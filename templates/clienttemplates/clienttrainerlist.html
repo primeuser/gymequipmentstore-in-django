@@ -1,0 +1,61 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Doctor {% endblock %}
+{% block active7 %} active {% endblock %}
+
+{% block css %}
+<style type="text/css">
+  img:hover
+  {
+    transform:scale(1.1);
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="page-title page-title-timetable bg-pattern" data-bgcolor="2791AA">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>DOCTORS</h1>
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs bg-color-primary">
+  	<div class="container">
+       <div class="row">
+      		<ol class="breadcrumb">
+        		<li class="breadcrumb-home"><a href="{% url 'gymapp:clienthome' %}"><i class="fa fa-home"></i></a></li>
+        		<li><a href="{% url 'gymapp:clienthome' %}">Our Doctors</a></li>
+      		</ol>
+   	   </div>
+   </div>
+</div>
+
+<div class="page-title page-title-doctor bg-pattern" data-bgcolor="ffffff">
+  
+    	<div class="container">
+        <br>
+        <br>
+    		<div class="row">
+    			   		{% for doctor in clientdoctorlist %}
+                    <div class="col-md-4" style="float:left;">
+                        <div class="card-deck">
+                          <div class="card">
+                            <a href="{% url 'gymapp:clientdoctordetail' doctor.slug %}"><img class="card-img-top" src="{{doctor.image.url}}" alt="Card image cap" style=" width:300px; height:326px; padding: 0 40px 0 40px; object-fit:cover; transition: all 300ms; "></a>
+                            <div class="card-body">
+                              <br>
+                              <h3 class="card-title" style="margin-left: 50px;"><a href="{% url 'gymapp:clientdoctordetail' doctor.slug %}">{{doctor.name}}</a></h3>
+                              <p style="margin-left: 50px; color:#000;">{{doctor.speciality}}</p>
+                              <br>
+                              <br>
+                            </div>
+                        </div>
+                        </div>
+                  </div>
+		    		    {% endfor %}
+		    </div>
+		</div>
+    <br>
+    <br>
+</div>
+{% endblock %}

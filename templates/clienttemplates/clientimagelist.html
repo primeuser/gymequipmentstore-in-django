@@ -1,0 +1,53 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Images {% endblock %}
+{% block active5 %} active {% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+<div class="page-title page-title-gallery1 bg-pattern" data-bgcolor="2791AA">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>GALLERY</h1>
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="{% url 'gymapp:clienthome' %}"><i class="fa fa-home"></i></a></li>
+        
+        <li class="active">Images</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="gallery gallery-1">
+  <div class="container">
+    <div class="row">
+      
+      {% for client in clientimagelist %}
+      
+        <div class="gallery-1-item isotope-item col-lg-4 col-md-4 col-sm-4 col-xs-12 success">
+          <div class="gallery-1-item-image"> <img src="{{client.image.url}}" alt="" /> <a href="{{client.image.url}}" class="fancybox" style="height:145px ; width:220px; object-fit: contain;" class="img-fluid">
+              <div class="gallery-1-item-overlay"> <i class="fa fa-plus"></i> </div>
+            </a> </div>
+          <div class="gallery-1-item-info">
+            <h4 class="gallery-1-item-title">{{client.title}}</h4>
+            <!-- <p class="gallery-1-item-desc">Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore.</p> -->
+          </div>
+        </div>
+      
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+{% endblock %}

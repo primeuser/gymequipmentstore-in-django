@@ -1,0 +1,64 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Events {% endblock %}
+{% block active1 %} active {% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+<div class="page-title page-title-services bg-pattern" data-bgcolor="2791AA">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>Events</h1>
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="{% url 'gymapp:clienthome' %}"><i class="fa fa-home"></i></a></li>
+        <li>Info</li>
+        <li class="active">Events</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="blog blog-2">
+  <div class="container">
+    <div class="row">
+          {% for event in clienteventlist %}
+          <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <div class="blog-item">
+              <div class="blog-item-image"> <a href="{% url 'gymapp:clienteventdetail' event.slug %}"><img src="{{event.image.url}}" alt="" />
+              </div>
+              <div class="blog-item-desc">
+                <div class="blog-item-title">
+                  <h3><a href="{% url 'gymapp:clienteventdetail' event.slug %}">{{event.title|title}}</a></h3>
+                </div>
+                <div class="blog-item-text"  style="height: 80px;
+                  overflow: hidden;">
+                  <p>{{event.detail|safe}}</p>
+            </div>
+                <div class="blog-item-button"><a href="{% url 'gymapp:clienteventdetail' event.slug %}" class="btn btn-primary-1">READ MORE</a></div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          </div>
+        </div>
+        </div>
+       <ul class="pagination">
+        <li><a class="first" href="#"><i class="fa fa-angle-left"></i></a></li>
+        <li><a class="active">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a class="last" href="#"><i class="fa fa-angle-right"></i></a></li>
+      </ul>
+    
+  
+</div>
+
+{% endblock %}

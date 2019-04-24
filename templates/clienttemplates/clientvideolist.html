@@ -1,0 +1,77 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Videos {% endblock %}
+{% block active5 %} active {% endblock %}
+
+{% block css %}
+<style>
+@media only screen and (max-width: 600px){
+  .video1
+  {
+    height:auto;
+    width: 100%;
+  }
+}
+</style>
+
+{% endblock %}
+
+{% block body %}
+<!-- <div class="container">
+    <div class="row">
+      <div class="serv-items" id="isotope-items">
+          		<div class="row">
+          			{% for client in clientvideolist %}
+					<div class="col-md-6">
+						<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 mission-video">
+        					<iframe width="457" height="314" src="{{client.link.url}}}" allowfullscreen></iframe>
+      					</div>
+            		
+              		</div>
+              		{% endfor %}
+            	</div>
+          </div>
+        </div>
+        </div> -->
+
+<div class="page-title page-title-gallery1 bg-pattern" data-bgcolor="2791AA">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>VIDEOS</h1>
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="{% url 'gymapp:clienthome' %}"><i class="fa fa-home"></i></a></li>
+       
+        <li class="active">Videos</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="gallery gallery-1">
+  <div class="container">
+    <div class="row">
+      <div class="gallery-text">
+          A list of Workout Videos choosen to improve your body physique while sitting in the comfort of your home. Use these videos daily for changing your lifestyle and eating habits. If you have any queries please feel free to contact us from our official website. It’ll be done in no time.For this workout, which has been designed by trainer Matthew Forzaglia, NFPT-CPT, you'll do a quick 2-minute warmup, followed by three rounds of rope moves with 45 seconds on, 15 seconds off. That’s not much rest, but this workout has been designed to be tough.Your rope-burned but perfectly formed six-pack will thank you later.  </div>
+
+     <div class="gallery-1-items" id="isotope-items">
+     	{% for video in clientvideolist %}
+        <div class="gallery-1-item isotope-item col-lg-4 col-md-4 col-sm-4 col-xs-12 success" style="width: 500px; height: 400px; margin-right: 80px;">
+          <div class="gallery-1-item-image"> <iframe src="https://www.youtube.com/embed/{{ video.video_link }}"  style="width:475px; height:250px;"></iframe> 
+            </div>
+          <div class="gallery-1-item-info" style="">
+            <h4 class="gallery-1-item-title" style="margin-right: 220px;">{{video.title}}</h4>
+          </div>
+        </div>
+        {% endfor %}
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+{% endblock %}

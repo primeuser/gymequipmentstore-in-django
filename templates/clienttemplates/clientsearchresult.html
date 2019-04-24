@@ -1,0 +1,52 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Search Result {% endblock %}
+{% block active8 %} active {% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+<div class="page-title page-title-doctor bg-pattern" data-bgcolor="199FBE">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>Search Results</h1>
+    </div>
+  </div>
+</div>
+<div class="search-container">
+{% if slist %}
+        <div class="row">
+        	<div class="container">
+            	 {% for bog in slist %}
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="blog-item">
+            	<br>
+            	<br>
+              <div class="blog-item-image"> <img src="{{bog.image.url}}" alt="" style="width:384px; height: 267px; object-fit: cover;" />
+              </div>
+              <div class="blog-item-desc">
+                <div class="blog-item-title">
+                  <h3><a href="{% url 'gymapp:clientblogdetail' bog.slug %}">{{bog.title|title}}</a></h3>
+                </div>
+                <div class="blog-item-text">
+                  <p>{{bog.content|safe}}</p>
+       			</div>
+                <div class="blog-item-button"><a href="{% url 'gymapp:clientblogdetail' bog.slug %}" class="btn btn-primary-1">READ MORE</a></div>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+               {% endfor %}
+           </div>
+	</div>
+   
+
+{% else %}
+<p>Nothing matched your search criteria.</p>
+ {% endif %}
+ </div>
+
+{% endblock %}

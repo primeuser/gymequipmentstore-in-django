@@ -1,0 +1,20 @@
+<form method="POST" action="{% url 'clinic1app:clientsubscribercreate' %}">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item f-doctor">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 booking-form-item email">
+          {{clientappointmentform.email}}
+        </div>
+      </div>
+
+      <div class="row latest-row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item">
+          <button class="btn btn-primary">
+            SUBSCRIBE
+          </button>
+        </div>
+      </div>
+</form>

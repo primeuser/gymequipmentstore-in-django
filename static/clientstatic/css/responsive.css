@@ -1,0 +1,669 @@
+/* --------------------------------------
+=========================================
+RESPONSIVE FIXES
+=========================================
+-----------------------------------------*/
+
+
+@media (max-width: 1200px){
+    .slider .container {
+        margin-left: -485px;
+    }
+    .slider .sp-buttons {
+        margin-left: -485px;
+    }
+    .stories-item-before {
+        margin-top: 88px;
+    }
+    .stories-item-after {
+        margin-top: 60px;
+    }
+    .footer-title {
+        font-size: 19px;
+    }
+    .opening-right {
+        font-size: 12px;
+    }
+    .blog-2.blog .blog-item-date {
+        width: 100px;
+        font-size: 11px;
+    }
+    .blog-2.blog .blog-item-comments {
+        width: 45px;
+        font-size: 11px;
+    }
+    .blog-2.blog .blog-item-view {
+        width: 55px;
+        font-size: 11px;
+    }
+    .blog-2.blog .blog-item-category {
+        font-size: 12px;
+    }
+    .related-item-button {
+        margin-top: 70px;
+    }
+    .doctor-info-hours-right {
+        font-size: 12px;
+    }
+    .nav-tabs li a {
+        font-size: 11px;
+        padding: 17px 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .header-phone {
+        font-size: 16px;
+        padding: 5px 16px;
+    }
+     
+    .header-button .btn {
+        padding: 7px 16px;
+        font-size: 15px;
+    }
+    .slider .container {
+        margin-left: -375px;
+    }
+    .slider .sp-buttons {
+        margin-left: -375px;
+    }
+    .service h3 {
+        font-size: 20px;
+    }
+    .review-item-quote {
+        right: 20px;
+        bottom: 20px;
+    }
+     .row.about {
+        height:400px;
+    }
+
+     .owl-item {
+        height:450px;
+        overflow: scroll;
+    }
+    .review-container{
+        height:400px;
+        overflow: scroll;
+    }
+    .review-item{
+        height:400px !important;
+        overflow: scroll;
+
+    }
+    .h2, h2 {
+        font-size: 30px;
+    }
+    .opening-left {
+        width: 41%;
+        margin-left: 0%;
+        font-size: 10px;
+    }
+    .opening-right {
+        width: 59%;
+        font-size: 10px;
+    }
+    .footer-item-3-phone {
+        font-size: 16px;
+    }
+    .footer-item-3-location {
+        margin-bottom: 20px;
+    }
+    .footer-item-3-mail {
+        font-size: 12px;
+    }
+    .footer-item-3-socials a {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+        line-height: 29px;
+        margin-right: 1px;
+    }
+    .right-bar-archive ul {
+        padding-left: 25px;
+    }
+    .right-bar-archive ul li a {
+        font-size: 11px;
+    }
+    .related-item-button {
+        margin-top: 30px;
+    }
+    .tt-calendar-day {
+        font-size: 11px;
+    }
+    .tt-row-item {
+        padding: 15px 2px;
+    }
+    .makeform-container {
+        padding: 60px 150px;
+    }
+    .feedback .container {
+        padding: 0 70px;
+    }
+    .blog-2.blog .blog-item-bottom-socials {
+        display: table;
+        margin: 0 auto;
+        padding: 10px 0;
+        float: none;
+    }
+}
+
+@media (min-width: 769px){
+	.top-menu ul.nav li.dropdown:hover > ul.dropdown-menu {
+        display: block;    
+    }
+    .top-menu .navbar-nav{
+       	display: block !important;
+    }
+    .t-tooltip:hover .t-tooltip-text {
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .top-bar {
+        font-size: 11px;
+        padding: 0px;
+    }
+    .top-bar-social i {
+        font-size: 15px;
+        top: 0px;
+    }
+    .top-bar-mail {
+        margin-right: 0;
+    }
+    .header-logo {
+        display: table;
+        margin: 0 auto;
+    }
+    .header-logo img {
+        width: 23px;
+        height:23px;
+        margin-right: 0px;
+        top: -1px;
+    }
+    .header-button {
+        margin: 0px auto 0px;
+        display: table;
+        top:0px;
+        float: right;
+
+    }
+    .plus{
+        visibility: visible;
+        margin:0px;
+        padding: 0px;
+        top: 0px;
+
+    }
+   .appoint {
+        visibility: hidden;
+       
+    }
+    a.fancybox-2.btn.btn-default {
+        height:30px;
+        width: 10px;
+
+       
+    }
+    .show-menu{
+        margin:0px;
+        float: left;
+        height: 40px;
+        width: auto;
+
+
+    }
+    .header {
+        padding: 0px;
+    }
+    .header-phone {
+        float: none;
+        display: table;
+        margin: 0 auto;
+    }
+    .top-menu{
+        top: 253px;
+        max-height: 100%;
+        overflow-y: auto;
+    }
+    .top-menu .navbar-nav{
+        display: none;
+    }
+    .color-sw-open{
+        display: none;
+    }
+    .color-sw{
+        top: 150px;
+    }
+    .mobile-bar {
+        display: block;
+    }
+    .slider .container {
+        margin-left: 0;
+        left: 0px;
+    }
+    .slider-welcome {
+        font-size: 25px;
+    }
+    .slider-title {
+        font-size: 37px;
+    }
+    .slider-subtitle {
+        font-size: 27px;
+    }
+    .slider-text {
+        font-size: 24px;
+ 
+    }
+    .slider .sp-buttons {
+        left: 0;
+        margin-left: 0;
+        bottom: 15px;
+    }
+    .about-text {
+        padding: 20px;
+        padding-left: 0px;
+    }
+    .about-text p{
+        margin-left: 50px;
+    }
+    .about-bg {
+        display: none;
+    }
+    .carousel-next {
+        right: 15px;
+    }
+    .carousel-prev {
+        left: 15px;
+    }
+    .h2, h2 {
+        font-size: 26px;
+    }
+    .section-title {
+        margin:15px;
+    }
+    .section-subtitle {
+        font-size: 13px;
+        padding: 0 15px;
+    }
+    .booking-form-item{
+        visibility: visible;
+        align-content: center;
+
+    }
+    .doctors .carousel-next {
+        right: 40px;
+    }
+     .doctors {
+        padding: 0px;
+    }
+    .doctors .carousel-prev {
+        left: 40px;
+    }
+    .numbers-item {
+        margin-bottom: 40px;
+    }
+    .stories-item-before {
+        margin-top: 28px;
+    }
+    .stories-item-after {
+        margin-top: 17px;
+    }
+    .tips {
+        margin-bottom: 40px;
+    }
+    .footer-item-4 {
+        position: relative;
+        width: 100% !important;
+        height: 434.8px;
+
+    }
+    .booking-form-item.email input
+    {
+        padding: 8px 0 8px 40px;
+    } 
+    .btn
+    {
+        padding:10px 16px; 
+        font-size:12px;
+    }
+    .opening-left {
+        width: 41%;
+        margin-left: 5%;
+        font-size: 13px;
+    }
+    .opening-right {
+        width: 54%;
+        font-size: 13px;
+    }
+    .page-title h1 {
+        font-size: 30px;
+    }
+    .page-title p {
+        font-size: 13px;
+    }
+    .history-text {
+        margin-top: 30px;
+    }
+    .make-text {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .make-text h2 {
+        font-size: 27px;
+    }
+    .make-text p {
+        font-size: 13px;
+    }
+    .make-button {
+        text-align: center;
+    }
+    .services-1-text {
+        padding: 0 15px;
+    }
+    .services-1-title {
+        padding: 0 15px;
+    }
+    .services-1 .service-text {
+        margin-bottom: 40px;
+    }
+    .serv ul#isotope-filter li a {
+        display: block;
+    }
+    .right-bar-archive ul li a {
+        font-size: 14px;
+    }
+    .quote {
+        font-size: 13px;
+    }
+    .blog-2.blog .blog-item-text-image.left {
+        margin-bottom: 20px;
+    }
+    .blog-2.blog .blog-item-poster-image {
+        margin-right: 20px;
+        width: 50px;
+    }
+    .comment-avatar {
+        width: 55px;
+        padding: 20px 20px 0 0;
+    }
+    .comment-avatar img {
+        width: 40px;
+    }
+    .comment-body {
+        width: calc(100% - 55px);
+        padding-right: 0px;
+    }
+    .comment .comment {
+        margin-left: 55px;
+    }
+    .blog-2.blog .blog-item-commform {
+        padding: 50px 30px;
+    }
+    .blog-2.blog .blog-item-commform .latest-row span {
+        margin-top: 20px;
+        margin-left: 0;
+    }
+    .subscribe {
+        margin-top: 40px;
+    }
+    .subscribe-text {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .btn-sm {
+        padding: 5px 20px;
+    }
+    .doctors-text-text {
+        float: none;
+        width: 100%;
+    }
+    .doctors-text-doctor {
+        float: none;
+        width: 100%;
+    }
+    .doctor-text-booking {
+        padding: 50px 20px;
+    }
+    .gallery-text {
+        padding: 0 15px;
+    }
+    .gallery-1 ul#isotope-filter li a {
+        display: block;
+    }
+    .gallery-1-items {
+        margin-top: 220px;
+    }
+    .prices-text {
+        padding: 0 15px;
+    }
+    .prices-item-desc-image {
+        float: none;
+        width: 100%;
+    }
+    .prices-item-desc-text {
+        float: none;
+        width: 100%;
+    }
+    .prices-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+        line-height: 18px;
+        margin: 0;
+    }
+    .prices-item-table-title {
+        font-size: 11px;
+    }
+    .prices-item-table-cost {
+        font-size: 13px;
+    }
+    .prices-item-offer-cost {
+        right: 10px;
+        font-size: 23px;
+        width: 100px;
+        height: 100px;
+        line-height: 18px;
+        padding: 29px 0;
+    }
+    .prices-item-offer-text {
+        padding-right: 100px;
+    }
+    .prices-item-table-cost-old {
+        padding-right: 0;
+    }
+    .timetable {
+        width: 750px;
+        overflow: scroll;
+        white-space: nowrap;
+    }
+    .makeform-container {
+        padding: 60px 20px;
+    }
+    .map-info {
+        position: relative;
+        top: 0;
+        left: 50% !important;
+        margin-left: -145px;
+    }
+    .get-item {
+        margin: 15px 0;
+    }
+    .feedback .container {
+        padding: 0 20px;
+    }
+    .bookform-left {
+        width: 320px;
+        float: none;
+        padding: 20px;
+        height: 670px;
+    }
+    .bookform-right {
+        width: 320px;
+        float: none;
+    }
+    .bookform.bookform-1 .bookform-left {
+        padding: 40px 25px 40px 25px;
+        height: 770px
+    }
+    .section-title {
+        padding: 0 15px;
+        text-align: center !important;
+    }
+    .owl-review2 .owl-controls {
+        top: -29px;
+        right: 50%;
+        margin-right: -27px;
+    }
+    .fancybox-close-btn {
+        top: 5px;
+        right: 5px;
+        color: #fff;
+        border: 2px solid #666;
+        background: #666;
+    }
+
+    .right-bar-tags {
+        margin-bottom: 30px;
+    }
+    .panel-group .panel-heading h4 a {
+        font-size: 16px;
+    }
+    .serv ul#isotope-filter li a {
+        font-size: 11px;
+        padding: 14px 25px;
+    }
+    .bookform.bookform-1 .bookform-right {
+        padding: 50px 35px 0 35px;
+    }
+    .bookform.bookform-1 .bookform-right-info-1:after {
+        display: none;
+    }
+    .gallery-1 ul#isotope-filter {
+        padding: 15px 15px;
+        text-align: center;
+    }
+    .gallery-1 ul#isotope-filter li a {
+        font-size: 11px;
+        padding: 14px 20px;
+    }
+    .t-tooltip-text {
+        width: 232px;
+    }
+    .t-left .t-tooltip-text {
+        margin-right: -18px;
+    }
+    .t-tooltip-text .btn-sm {
+        padding: 4px 15px;
+        font-size: 14px;
+    }
+    .top-menu-logo {
+        font-size: 20px;
+    }
+    .top-menu .navbar-nav li a:hover, .top-menu .navbar-nav li a:focus {
+        background: transparent;
+        color: #455f68;
+    }
+    .top-menu ul.dropdown-menu.with-bg {
+        background: #fff;
+    }
+    .mobile-bar-cont {
+        float: none;
+    }
+    .bookform-right {
+        display: none;
+    }
+    .blog-2.blog .blog-item-navs-prev {
+        width: 50%;
+    }
+    .blog-2.blog .blog-item-navs-next {
+        width: 50%;
+    }
+    .serv-item-image {
+        float: none;
+        width: 100%;
+    }
+    .tt-search input{
+        padding: 26px 20px;
+        font-size: 13px;
+    }
+    .tt-search button{
+        right: 10px;
+    }
+     .searchbutton{
+    margin-left: 10px;
+
+    }
+    .searchfield{
+    padding: 0 100px 0 100px;
+
+   }
+    .review-item-image {
+        float: none;
+        width: 94px;
+        margin: 0 auto;
+    }
+    .review-item-text {
+        padding: 15px;
+    }
+    .review-item-name {
+        padding-left: 15px;
+    }
+    .review-item-position {
+        padding-left: 15px;
+    }
+    .notfound-image {
+        float: none;
+        width: 100%;
+        height: 300px;
+    }
+    .booking-form-item textarea {
+        height: 120px !important;
+    }
+	.slider .container{
+		display:none;
+	}
+	.service{
+		display:block;
+	}
+}
+
+@media (max-width: 359px){
+    .top-bar-social i {
+        margin-left: 10px;
+    }
+    .selectBox-dropdown .selectBox-label {
+   /* padding: 2px 0px;*/
+   margin-right: 0px;
+    display: inline-block;
+   /* white-space: nowrap;*/
+    overflow: hidden;
+    /*color: white;*/
+   }
+    .top-bar {
+        font-size: 10px;
+    }
+    .top-menu-logo {
+        font-size: 18px;
+        margin-right: 0px;
+    }
+    .bookform-left {
+        width: 280px;
+    }
+	.service{
+		display:block;
+	}
+	.slider .container{
+		display:none;
+	}
+	.review-item-text,
+	.owl-review2 .review-item-name,
+	.owl-review2 .review-item-position{
+		padding-left:15px !important;
+	}
+	iframe {
+		width:100%;
+	}
+}

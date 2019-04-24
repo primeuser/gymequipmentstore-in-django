@@ -1,0 +1,177 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Product {% endblock %}
+{% block active4 %}active{% endblock %}
+{% block css %}
+<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="% static 'clientstatic/css/bootstrap.min.css' %}" />
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="{% static 'clientstatic/css/slick.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'clientstatic/css/slick-theme.css' %}" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="{% static 'clientstatic/css/nouislider.css' %}" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="% static 'clientstatic/css/font-awesome.min.css' %}">
+
+{% endblock %}
+{% block body %}
+<div class="gallery gallery-1">
+  <div class="container">
+  	{% if request.session.cart_id %}
+  	<a href="{% url 'gymapp:clientcarttotal' request.session.cart_id %}" class="btn btn-warning" style="float: right;">Checkout</a>
+  	{% endif %}
+  	<br>
+  	<br>
+<h1>Products</h1>
+
+					<!-- store top filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-left">
+							<div class="row-filter">
+								<a href="#"><i class="fa fa-th-large"></i></a>
+								<a href="#" class="active"><i class="fa fa-bars"></i></a>
+							</div>
+							<div class="sort-filter">
+								<span class="text-uppercase">Sort By:</span>
+								<select class="input">
+										<option value="0">Position</option>
+										<option value="0">Price</option>
+										<option value="0">Rating</option>
+									</select>
+								<a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+							</div>
+						</div>
+						<div class="pull-right">
+							<div class="page-filter">
+								<span class="text-uppercase">Show:</span>
+								<select class="input">
+										<option value="0">10</option>
+										<option value="1">20</option>
+										<option value="2">30</option>
+									</select>
+							</div>
+							<ul class="store-pages">
+								<li><span class="text-uppercase">Page:</span></li>
+								<li class="active">1</li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /store top filter -->
+					<!-- STORE -->
+					<div id="store">
+						<!-- row -->
+						<div class="row">
+							{% for product in clientproductlist %}
+							<!-- Product Single -->
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb">
+										<button class="main-btn quick-view"><a href="{% url 'gymapp:clientproductdetail' product.id %}"><i class="fa fa-search-plus"></i> Quick view</a></button>
+										<img src="{{product.image1.url}}" alt="" style="width: 293.333px; height: 293.333px; object-fit: contain;">
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">Rs.{{product.price}} <!-- <del class="product-old-price">$45.00</del> --></h3>
+										<h2 class="product-name"><a href="{% url 'gymapp:clientproductdetail' product.id %}">{{product.name}}</a></h2>
+									<!-- 	<div class="product-btns">
+										<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+									</div> -->
+									<form method='post' class="form my-2 my-lg-0 form-product-ajax" action="{% url  'gymapp:cart_update' %}" data-endpoint="{% url 'gymapp:cart_update' %}">
+									{% csrf_token %}
+										<input type="hidden" name='product' value='{{product.id}}'>
+										<span class="submit-span">
+											{% if product in cart.products.all %}
+											In cart <button type="submit" class="btn btn-link">Remove</button>
+											{% else %}
+											<button type="submit" class="btn btn-success">Add to cart </button>
+											{% endif%}
+										</span>
+									</form>
+		
+								</div>
+							</div>
+							<!-- /Product Single -->
+							<div class="clearfix visible-sm visible-xs"></div>
+
+
+						</div>
+							{% endfor %}
+						<!-- /row -->
+					</div>
+					<!-- /STORE -->
+
+					<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-left">
+							<div class="row-filter">
+								<a href="#"><i class="fa fa-th-large"></i></a>
+								<a href="#" class="active"><i class="fa fa-bars"></i></a>
+							</div>
+							<div class="sort-filter">
+								<span class="text-uppercase">Sort By:</span>
+								<select class="input">
+										<option value="0">Position</option>
+										<option value="0">Price</option>
+										<option value="0">Rating</option>
+									</select>
+								<a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+							</div>
+						</div>
+						<div class="pull-right">
+							<div class="page-filter">
+								<span class="text-uppercase">Show:</span>
+								<select class="input">
+										<option value="0">10</option>
+										<option value="1">20</option>
+										<option value="2">30</option>
+									</select>
+							</div>
+							<ul class="store-pages">
+								<li><span class="text-uppercase">Page:</span></li>
+								<li class="active">1</li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /store bottom filter -->
+
+</div>
+</div>
+</div>
+					
+{% endblock %}
+{% block js %}
+	<script src="{% static 'clientstatic/js/jquery.min.js' %}"></script>
+	<script src="{% static 'clientstatic/js/slick.min.js' %}"></script>
+	<script src="{% static 'clientstatic/js/nouislider.min.js' %}"></script>
+	<script src="{% static 'clientstatic/js/jquery.zoom.min.js' %}"></script>
+	<script src="{% static 'clientstatic/js/main.js' %}"></script>
+
+	<script type="text/javascript">
+		$("#addit").click(function(){
+			var productId = $("#productId").val();
+			var productName = $("#productName").val();
+			var productQuantity = $("#productQuantity").val();
+			var data = {
+			'product_id': productId,
+			'product_name': productName,
+			'quantity': productQuantity
+			};
+
+			$.post("/cart/add", data, showDone);
+			});
+
+			var showDone = function() {
+			/* Make something happen here*/
+			}
+	</script>
+{% endblock %}

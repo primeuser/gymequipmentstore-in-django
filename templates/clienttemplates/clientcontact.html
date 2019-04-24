@@ -1,0 +1,183 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Contact us {% endblock %}
+{% block active6 %}active {% endblock %}
+
+{% block css %}
+<style>
+  @media only screen and (max-width: 600px) {
+   .message
+    {
+      margin-left: 15px;
+    }
+  }
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="page-title page-title-contacts bg-pattern"  data-bgcolor="2791AA">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>Contact us</h1>
+    </div>
+  </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvixCoSBkZLgW_yDL1MnLZfmGkE6SjEBk&callback=myMap"></script>
+
+<div id="contact-map" class="map"></div>
+ <div class="map-info-container">
+  <div class="map-info" id="map-info">
+    <div class="map-info-contacts">
+      <div class="map-info-phone"><a href="tel: +977{{organization.phone}}"> <i class="fa fa-phone"></i>
+        <span>
+          {{organization.phone}}
+        </span></a>
+      </div>
+      <div class="map-info-mail"> <a href="mailto:{{organization.email}}"><i class="fa fa-envelope"></i>
+        <span>
+          {{organization.email}}
+        </span></a>
+      </div>
+      <div class="map-info-location"> <i class="flaticon-navigation-arrow"></i>
+        <span>
+          {{organization.address}}<br>
+          Nepal
+        </span>
+      </div>
+    </div>
+    <div class="map-info-socials"> <a href="https://www.facebook.com" target="_blank"><i class="fa fa-facebook"></i></a> <a href="https://plus.google.com/discover" target="_blank"><i class="fa fa-google-plus"></i></a></div>
+  </div>
+</div>
+
+
+<div class="feedback">
+  <div class="container" style="padding: 0px;">
+    <div class="row">
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+      <h2 class="section-title" >
+        <span class="bold700">
+          Leave a Message For Us
+        </span>
+      </h2>
+ 
+      <form name="form1" method="POST" enctype="multipart/form-data">
+         {% csrf_token %}
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item name">
+              {{form.name}}
+             <div class="help help-sm help-red">!</div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item phone">
+              {{form.phone}}
+              <div class="help help-sm help-red">!</div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item email">
+              {{form.email}}
+            </div>
+         </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="row" style="width:400px; ">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item message">
+              {{form.message}}
+              
+              <div class="help help-sm help-red">!</div>
+            </div>
+          </div>
+        </div>
+       
+        <div class="row latest-row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item">
+             <button class="btn btn-info btn-lg">
+
+              SEND
+            </button>
+          </div>
+        </div>
+
+      </form>
+      <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Contact</h4>
+        </div>
+        <div class="modal-body">
+          <p>Contact data sent.</p>
+        </div>
+        <div class="modal-footer">
+          <div class="serv-item-button"> <a href="{% url 'gymapp:clienthome' %}" class="btn btn-primary-1 btn-sm">CLOSE <br> </a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+ </div>
+  </div>
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+  <h2 class="section-title" style="margin-left: 0px;">
+        <span class="bold700">
+         Emergency
+        </span>
+      </h2>
+     
+       
+    <div class="map-info-contacts">
+      <div class="map-info-phone"><a href="tel: +977{{organization.phone}}"> <i class="fa fa-phone"></i>
+        <span>
+          {{organization.phone}}
+        </span></a>
+      </div>
+      <div class="map-info-mail"><a href="mailto:{{organization.email}}"> <i class="fa fa-envelope"></i>
+        <span>
+          {{organization.email}}
+        </span></a>
+      </div>
+      <div class="map-info-location"> <i class="flaticon-navigation-arrow"></i>
+        <span>
+          {{organization.address}}<br>
+          Nepal
+        </span>
+      </div>
+    </div>
+    
+</div>
+</div>
+</div>
+</div>
+<script>
+      var labels = 'Clinic 1';
+      var labelIndex = 12;
+
+      function initialize() {
+        var thd = { lat: 27.665223, lng: 85.306308 };
+        var map = new google.maps.Map(document.getElementById('contact-map'), {
+          zoom: 15,
+          center: thd
+        });
+
+        addMarker(thd, map);
+      }
+
+      function addMarker(location, map) {
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          label: {
+                  text: labels,
+                  color: "brown",
+                  fontSize: "12px",
+                  fontWeight: "bold"
+                }
+        });
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+{% endblock %}

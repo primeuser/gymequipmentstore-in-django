@@ -1,0 +1,726 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Creative Responsive Bootstrap Multi-Purpose HTML Template">
+  <meta name="keywords" content="H2O, Creative, Agency, Portfolio, Freelancer, Shop, Store,Bootstrap, HTML, Template, One page">
+  <meta name="author" content="Vadzim Liashkevich">
+
+  <!-- SITE TITLE -->
+  <title>{{organization.name}}{% block title %}{% endblock %}</title>
+
+<!-- =========================
+      FAV AND TOUCH ICONS  
+      ============================== -->
+
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+      <link rel="shortcut icon" href="{{organization.favicon.url}}">
+      <link rel="apple-touch-icon" href="{% static 'clientstatic/images/apple-touch-icon.html' %}">
+      <link rel="apple-touch-icon" sizes="72x72" href="{% static 'clientstatic/images/apple-touch-icon-72x72.html' %}">
+      <link rel="apple-touch-icon" sizes="114x114" href="{% static 'clientstatic/images/apple-touch-icon-114x114.html' %}">
+
+<!-- =========================
+     STYLESHEETS   
+     ============================== -->
+     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <link rel="stylesheet" type="text/css" href="{% static 'clientstatic/css/master.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'clientstatic/css/style.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'clientstatic/css/select2.min.css' %}">
+
+     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+     <link rel="stylesheet" href="{% static 'clientstatic/css/select2.min.css' %}" />
+     <style type="text/css">
+      @media only screen and (max-width: 600px) {
+        a.fancybox-2.btn.btn-default {
+          visibility: hidden;
+          margin: 100px;
+        }
+      }
+
+        .dropbtn {
+        color: black;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        }
+
+        .dropbtn:hover, .dropbtn:focus {
+        background-color: #2980B9;
+        }
+
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        }
+
+        .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        }
+
+        .dropdown a:hover {background-color: #ddd;}
+
+        .show {display: block;}
+    </style>
+    {% block css %}
+    
+    {% endblock %}
+  </head>
+
+  <body data-spy="scroll" data-target=".navbar">
+
+    {% if messages %}
+    {% for message in messages %}
+    <div id="messageModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" style="color: #D21E2B;">Thank You!</h4>
+          </div>
+          <div class="modal-body">
+            <p style="color: #2A2A2A;">{{message}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="primary-button" style="padding: 10px 20px; " data-dismiss="modal">Ok</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+
+
+    <!-- Your customer chat code -->
+    <div class="fb-customerchat"
+    attribution=setup_tool
+    page_id="365878737325801"
+    theme_color="#0084ff">
+  </div>
+  <div class="preloader" id="preloader"> <img src="{% static 'clientstatic/images/preloader.gif' %}" alt="" /> </div>
+
+<!-- =========================
+     TOP BAR
+     ============================== -->
+     <div class="top-bar" id="top-bar">
+      <div class="container">
+        <div class="row"> 
+          <!-- TOP BAR LEFT -->
+          {% if user.is_authenticated %}
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <div class="header-button" style="width: 10px; margin-right:200px;"> 
+          <span class="user" style="margin-left: 300px;" >
+          <a href="#" class="fancybox-2 btn btn-default" style="margin-left:350px !important;margin-top: 30px !important;">
+              {{request.user.username}}
+          </a></span>
+          </div>
+          {% endif %}
+            <div class="top-bar-adress"> <i class="flaticon-navigation-arrow">{{organization.address}}</i></div>
+          
+          </div>
+
+          <!-- TOP BAR RIGHT -->
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+            <div class="top-bar-social"> <a href={{organization.facebook}}" target="_blank"><i class="fa fa-facebook"></i></a> <a href="https://plus.google.com/discover" target="_blank"><i class="fa fa-google-plus"></i></a> 
+            </div>
+            <div class="top-bar-mail"> <i class="fa fa-envelope"></i> <a href="mailto:{{organization.email}}?Subject= " target="_top">{{user.name}}{{organization.email}}</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- =========================
+     END TOP BAR   
+     ============================== --> 
+
+<!-- =========================
+     HEADER
+     ============================== -->
+     <div class="header" id="header" style="padding-top: 0px;">
+      <div class="container">
+        <div class="row"> 
+
+          <!-- HEADER LOGO -->
+          <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+            <div class="header-logo"> <a href="{% url 'gymapp:clienthome' %}"><img src="{{organization.logo.url}}" alt="" />
+              <span class="bold600 color-child-6">
+                <a href="{% url 'gymapp:clienthome' %}">{{organization.name}}</a>
+              </span>
+<!--             <span class="color-child-5">
+              CLINIC
+            </span> -->
+          </a> </div>
+        </div>
+
+        <!-- HEADER BUTTONS -->
+        {% if user.is_authenticated %}
+          <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+          <div class="header-button"> 
+            <a href="{% url 'gymapp:clientlogout' %}" class="fancybox-2 btn btn-default">
+              <span class="plus">
+                
+              </span>
+
+              <span class="login">Logout</span></a>  
+                  <div class="dropdown">
+                   <span class="fa-stack fa-2x">
+                    <i class="fas fa-shopping-cart fa-stack-4x dropbtn" onclick="myFunction()" style="margin-left: 5px; display: inline-block;"></i>
+                    <h4 style="font-size: 18px; display: inline; border-radius: 2px;">{{request.session.cart_items}}</h4>
+
+                    </span>
+                  <div id="myDropdown" class="dropdown-content">
+                  <div class="row" style="width:300px; overflow: auto; height: 200px;">
+                  {% for item in clientcarttotal.products.all %}
+                  <div class="col-md-6">
+                  <a href="{% url 'gymapp:clientproductdetail' item.id %}"><img src="{{item.image1.url}}" style=" height:50px; width:50px; display: inline-block;"></a>
+                  </div>
+                  <div class="col-md-6">
+                  <a href="{% url 'gymapp:clientproductdetail' item.id %}">{{item.name}}
+                    <br>
+                    <br>
+                  Rs.{{item.price}}</a>
+                 
+                  </div>
+                  {% endfor %}
+                </div>
+                  </div>
+                 </div>    
+            </div>
+              <div class="header-phone" style="margin-top: 15px;"> <a class="fa fa-phone" href="tel: +977{{organization.phone}}"></a> {{organization.phone}} </div>
+              
+
+
+            </div>
+        {% else %}
+        <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+          <div class="header-button"> 
+            <a href="#bookform1" class="fancybox-2 btn btn-default">
+              <span class="plus">
+                +
+              </span>
+
+              <span class="login">Login</span></a> 
+                <div class="dropdown">
+                    <span class="fa-stack fa-2x">
+                    <i class="fas fa-shopping-cart fa-stack-4x dropbtn" onclick="myFunction()" style="margin-left: 5px; display: inline-block;"></i>
+                    <h4 style="font-size: 18px; display: inline; border-radius: 2px;">{{request.session.cart_items}}</h4>
+
+                    </span>
+                    <div id="myDropdown" class="dropdown-content">
+                    <div class="row" style="width:300px; overflow: auto; height: 200px;">
+                    {% for products in clientproductlist %}
+                    <div class="col-md-6">
+                    <a href="{% url 'gymapp:clientproductdetail' products.id %}"><img src="{{products.image1.url}}" style=" height:50px; width:50px; display: inline-block;"></a>
+                    </div>
+                    <div class="col-md-6">
+                    <a href="{% url 'gymapp:clientproductdetail' products.id %}">{{products.name}}
+                      <br>
+                      <br>
+                    Rs.{{products.price}}</a>
+                   
+                    </div>
+                    {% endfor %}
+                </div>
+                  </div>
+                 </div> 
+               </div>
+              <div class="header-phone"> <a class="fa fa-phone" href="tel: +977{{organization.phone}}"></a> {{organization.phone}} </div>
+           
+
+
+            </div>
+
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+<!-- =========================
+     END HEADER
+     ============================== --> 
+
+<!-- =========================
+     MAIN MENU
+     ============================== -->
+     <div class="top-menu" id="top-menu">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="mobile-bar-cont">
+              <div class="top-menu-logo"> <a href="{% url 'gymapp:clienthome' %}"><img src="{{organization.logo.url}}" alt="" />
+                <span class="bold600 color-child-6">
+                  {{organization.name}}
+                </span>
+           <!--    <span class="color-child-5">
+                CLINIC
+              </span> -->
+            </a> </div>
+            <div class="mobile-bar">
+              <div class="show-menu" id="show-menu"> <i class="fa fa-bars"></i> </div>
+              <!--  <div class="color-sw-open-1" id="color-sw-open-1"> <i class="fa fa-gear"></i> </div> -->
+            </div>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="{% block active1 %}{% endblock %}" ><a href="{% url 'gymapp:clienthome' %}">HOME</a></li>
+            <li class="{% block active2 %}{% endblock %}"><a href="{% url 'gymapp:clientabout' %}">ABOUT US</a></li>
+            <li class="{% block active3 %}{% endblock %}"><a href="{% url 'gymapp:clientservicelist' %}">SERVICES</a></li>
+            <li class="dropdown {% block active4 %}{% endblock %}"> <a href="{% url 'gymapp:clientproductlist' %}">PRODUCTS</a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{% url 'gymapp:clientfacilitylist' %}">Cardio</a></li>
+                <li><a href="{% url 'gymapp:clientschedulelist' %}">Strength</a></li>
+                <li><a href="{% url 'gymapp:clienteventlist' %}">Gym Packages</a></li>
+                <li><a href="{% url 'gymapp:clientnoticelist' %}">Physical Therapy Equipment</a></li>
+       <!--        {% for pg in clientpagedropdown %}
+              <li><a href="{% url 'gymapp:clientpagedetail' pg.slug %}">{{pg.title}}</a></li>
+              {% endfor %} -->
+            </ul>
+            <li class="{% block active8 %}{% endblock %}"> <a href="{% url 'gymapp:clientbloglist' %}">BLOG</a></li>
+            <li class="dropdown {% block active5 %}{% endblock %}"> <a href="#">GALLERY</a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{% url 'gymapp:clientimagelist' %}">Image</a></li>
+                <li><a href="{% url 'gymapp:clientvideolist' %}">Videos</a></li>
+              </ul>
+            </li>
+
+            <li class="{% block active6 %}{% endblock %}"><a href="{% url 'gymapp:clientcontact' %}">CONTACT US</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- =========================
+     END MAIN MENU
+     ============================== --> 
+
+<!-- =========================
+     HEADER SLIDER
+     ============================== -->
+
+
+     {% block body %}
+
+     {% endblock %}
+<!-- =========================
+    FOOTER
+    ============================== -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footer-matchheight" style="height:400px;">
+            <div class="row" > 
+
+              <!-- FOOTER ITEM 1 -->
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footer-item footer-item-1" style="height:400px !important; overflow: hidden;">
+                <h3 class="footer-title footer-title-line"><i class="fa fa-facebook"></i> LATEST FEEDS</h3>
+                <div class="tweet">
+                  <div class="tweet-text">
+                    <div class="fb-page" style="height:300px !important; overflow:hidden;" data-href="{{organization.facebook}}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="{{organization.facebook}}" class="fb-xfbml-parse-ignore"><a href="{{organization.facebook}}">Cinic1</a></blockquote></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FOOTER ITEM 2 -->
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footer-item footer-item-2">
+                <h3 class="footer-title footer-title-line"><i class="fa fa-clock-o"></i> OPENING HOURS</h3>
+                <div class="opening-left"> Sunday<br>
+                  Monday<br>
+                  Tuesday<br>
+                  Wednesday<br>
+                  Thursday<br>
+                  Friday<br>
+                  Saturday
+                </div>
+                <div class="opening-right">9:00 am - 7:15 pm<br>
+                  9:00 am - 7:15 pm<br>
+                  9:00 am - 7:15 pm<br>
+                  9:00 am - 7:15 pm<br>
+                  9:00 am - 7:15 pm<br>
+                  9:00 am - 7:15 pm<br>
+                  Closed 
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer-copyright" style="margin-top:10px;">
+                <div>@Copyright <a href="{% url 'gymapp:clienthome' %}" target="_blank"> {{organization.name}}</a> </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FOOTER ITEM 3 -->
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 footer-item footer-item-3 footer-matchheight" id="footer-item-3">
+            <h3 class="footer-title"><i class="fa fa-map-marker"></i> CONTACTS</h3>
+            <div class="footer-item-3-phone"> <i class="fa fa-phone"></i>
+              <a href="tel: +977{{organization.phone}}"> {{organization.phone}}</a></div>
+              <div class="footer-item-3-location"> <i class="flaticon-navigation-arrow"></i><a href="{% url 'gymapp:clientcontact' %}">{{organization.address}} </div>
+              <div class="footer-item-3-mail"> <i class="fa fa-envelope"></i> <a href="mailto:{{organization.email}}?Subject= " target="_top">{{organization.email}}</a> </div>
+              <div class="footer-item-3-socials"> <a href="{{organization.facebook}}" target="_blank"><i class="fa fa-facebook"></i></a> <a href="https://plus.google.com/discover" target="_blank"><i class="fa fa-google-plus"></i></a></div>
+            </div>
+
+            <!-- FOOTER ITEM 4 -->
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 footer-item footer-item-4 footer-matchheight " id="footer-item-4">
+
+              <h3 class="footer-title" style="margin-top: 40px;">SUBSCRIBER</h3>
+              <p> Signup today for free and be the first to get notified on news updates: </p>  
+              <form method="POST" action="{% url 'gymapp:clientsubscribercreate' %}" >
+               {% csrf_token %}
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item email" style="color: #000;">
+                 {{clientsubscriberform.email}}
+               </div>
+               <br>
+               <br>
+               <button class="btn btn-primary" style="margin-left: 20px;">
+                SUBSCRIBE
+              </button>
+            </form>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer-copyright" style=" margin:50px 0 0 0;">
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+
+<!-- =========================
+    END FOOTER
+    ============================== --> 
+
+<!-- =========================
+    POPUP FORMS
+    ============================== -->
+    <div class="bookform bookform-1" id="bookform1">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="bookform-left"  style="background-color: #F9F9F9;">
+          <h2 class="section-title">
+            <span class="bold700">
+              Login
+            </span>
+          </h2>
+          <form method="POST" action="{% url 'gymapp:clientlogin' %}" class="login-form">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item name">
+                {{clientloginform.username}}
+                <div class="help help-sm help-red">!</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item name">
+                {{clientloginform.password}}
+                <div class="help help-sm help-red">!</div>
+              </div>
+            </div>
+            <div class="row latest-row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item">
+                <input type="submit" class="btn btn-primary" style="margin:15px;" value="Login">
+              </div>
+            </div>
+          </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="bookform-left"  style="background-color: #F9F9F9;">
+            <h2 class="section-title">
+              <span class="bold700">
+                Register
+              </span>
+            </h2>
+            <form method="POST" action="{% url 'gymapp:clientcreate' %}">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item name">
+                  {{clientcreateform.username}}
+                  <div class="help help-sm help-red">!</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item name">
+                  {{clientcreateform.password1}}
+                  <div class="help help-sm help-red">!</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item name">
+                  {{clientcreateform.password2}}
+                  <div class="help help-sm help-red">!</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item date">
+                  {{clientcreateform.name}}
+                  <div class="help help-sm help-red">!</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item phone">
+                  {{clientcreateform.phone}}
+                  <div class="help help-sm help-red">!</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item email">
+                  {{clientcreateform.email}}
+                </div>
+              </div>
+              <div class="row latest-row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item">
+                  <button class="btn btn-primary" style="margin-left:5px;">
+                    SUBMIT
+                  </button>
+                  <a class="fb-close" id="fb-close1" href="javascript:jQuery.fancybox.close();">Cancel</a> 
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- =========================
+    END POPUP FORMS
+    ============================== -->
+
+    <div class="totop" id="totop"> <i class="fa fa-angle-up"></i> </div>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'clientstatic/css/responsive.css' %}" />
+
+<!-- =========================
+     SCRIPTS   
+     ============================== --> 
+     <!-- JQUERY --> 
+     <script src="{% static 'clientstatic/js/jquery-2.2.0.min.js' %}"></script> 
+
+     <!-- BOOTSTRAP --> 
+     <script src="{% static 'clientstatic/js/bootstrap.min.js' %}"></script> 
+
+     <!-- SLIDER PRO --> 
+     <script src="{% static 'clientstatic/js/jquery.sliderPro.min.js' %}"></script> 
+
+     <!-- LIGHTBOX --> 
+     <script src="{% static 'clientstatic/js/jquery.fancybox.pack.js' %}"></script> 
+
+     <!-- CAROUSEL --> 
+     <script src="{% static 'clientstatic/js/owl.carousel.js' %}"></script> 
+
+     <!-- STAR RATING --> 
+     <script src="{% static 'clientstatic/js/jquery.barrating.min.js' %}"></script> 
+
+     <!-- ISOTOPE FILTER --> 
+     <script src="{% static 'clientstatic/js/isotope.pkgd.min.js' %}"></script> 
+
+     <!-- SCROLLSPY --> 
+     <script src="{% static 'clientstatic/js/scrollspy.js' %}"></script> 
+
+     <!-- DATEPICKER --> 
+     <script src="{% static 'clientstatic/js/moment.js' %}"></script> 
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+     <!-- FORM VALIDATOR --> 
+     <script src="{% static 'clientstatic/js/jquery.form-validator.js' %}"></script> 
+
+     <!-- SELECT STYLING --> 
+     <script src="{% static 'clientstatic/js/jquery.selectBox.js' %}"></script> 
+
+     <!-- MATCHHEIGHT --> 
+     <script src="{% static 'clientstatic/js/jquery.matchHeight.js' %}"></script> 
+
+     <!-- SELECT2 JS -->
+     <!-- <script src="{% static 'clientstatic/js/select2.min.js' %}"></script>  -->
+
+     <!-- JQUERY FORM --> 
+     <script src="{% static 'clientstatic/js/jquery.form.html' %}"></script> 
+
+     <!-- IMAGES LOADED --> 
+     <script src="{% static 'clientstatic/js/imagesloaded.pkgd.min.js' %}"></script> 
+
+     <!-- CUSTOM SCRIPT --> 
+     <script src="{% static 'clientstatic/js/theme.js' %}"></script> 
+
+     <!-- GOOGLE MAPS --> 
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIt0-3xYygh5jhA2YCRcEP9YsLO3mw0co&amp;language=en&amp;amp&amp;sensor=true"></script> 
+
+<!-- Ajax for Login Modal -->
+    <!--  <script>
+       $('.login-form').submit(function(e){
+        e.preventDefault();
+        console.log(this);
+        var $url = $(this).attr('action');
+        console.log(url);
+        var $data = $(this).serialize();
+        console.log("here")
+        $.ajax({
+          method:'POST',
+          data:$data,
+          url:$url,
+          success:function(data){
+            console.log(data);
+          },
+          error:function(data):{
+            console.log(data);
+          }
+        });
+
+       });
+     </script> -->
+<!-- End Ajax -->
+     <!-- <testing date and time--> 
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --> 
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js' %}"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js' %}"></script>
+  <![endif]--> 
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-85192583-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+  <script type="text/javascript">
+    $(function () {
+      $('#datetimepicker1').datetimepicker({
+        format: 'YYYY-MM-DD',
+      });
+    });
+  </script>
+
+<!-- <script type="text/javascript">
+  
+  
+  $(function() {
+    $('#datetimepicker2').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm:ss'
+    });
+  });
+</script> --> 
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker3').datetimepicker({
+      format: 'HH:mm:ss'
+    });
+  });
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script type="text/javascript">
+// In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+  $('.form-doctor').select2({
+    placeholder: 'Select Doctor',
+  });
+});
+
+</script>
+
+<script type="text/javascript">
+  $(window).on('load',function(){
+    $('#messageModal').modal('show');
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.form_doctor1').select2();
+  });
+</script>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+
+        crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment-with-locales.min.js"></script>
+<link href="{% static 'clientstatic/css/datetimepicker.css' %}" rel="stylesheet">
+
+<script src="{% static 'clientstatic/js/datetimepicker.js' %}"></script>
+
+<script type="text/javascript">
+$('#picker').dateTimePicker({
+
+  dateFormat: "YYYY-MM-DD HH:mm"
+  locale: 'en'
+
+
+});
+</script>
+-->
+<script type="text/javascript">
+  /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+{% block js %}
+{% endblock %}
+</body>
+
+
+<!-- Mirrored from fvdthemes.com/html/dentalclinic/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Dec 2018 10:26:43 GMT -->
+</html>

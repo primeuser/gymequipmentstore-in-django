@@ -1,0 +1,52 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Product {% endblock %}
+{% block active9 %}active{% endblock %}
+{% block css %}
+<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="% static 'clientstatic/css/bootstrap.min.css' %}" />
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="{% static 'clientstatic/css/slick.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'clientstatic/css/slick-theme.css' %}" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="{% static 'clientstatic/css/nouislider.css' %}" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="% static 'clientstatic/css/font-awesome.min.css' %}">
+
+{% endblock %}
+{% block body %}
+<div class="gallery gallery-1">
+  <div class="container">
+		<table><h1> Cart Items</h1> 
+		<br>
+		<thead>
+		<th><h3 style="margin-left: 80px;">Items</h3></th>
+		<th style="padding-left: 200px; margin-left: 100px;"><h3>Price</h3></th>
+		</thead>
+				{% for item in clientcarttotal.products.all %}
+		<tbody>
+					<td>
+					<img src="{{item.image1.url}}" style="width:200px;height:200px;">
+
+					</td>
+					<td style="padding-left: 200px;">
+					<h4>{{item.name}}</h4>
+					<br>
+					<h4>Rs.{{item.price}}</h4>
+					<br>
+					</td>
+			</tbody>
+				{% endfor %}
+			</table>
+			<br>
+			<br>
+				<h3 style="display: inline; margin-left: 80px;">Total</h3> 
+				<h3 style="margin-left: 260px; display: inline-block;">Rs. {{clientcarttotal.total}}</h3>
+	</div>
+</div>
+{% endblock %}

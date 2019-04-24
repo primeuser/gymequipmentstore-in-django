@@ -1,0 +1,50 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Notices {% endblock %}
+{% block active4 %} active {% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block body %}
+<div class="page-title page-title-services bg-pattern" data-bgcolor="2791AA">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>Notices</h1>
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="{% url 'gymapp:clienthome' %}"><i class="fa fa-home"></i></a></li>
+        <li>Info</li>
+        <li class="active">Notices</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="panel-group" id="accordion">
+{% for notice in clientnoticelist %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#{{notice.id}}">{{notice.title|title}}</a>
+        </h4>
+      </div>
+      <div id="{{notice.id}}" class="panel-collapse collapse {% if forloop.counter == 1 %}in {% endif %}">
+        <div class="panel-body">{{notice.detail|safe}}</div>
+      </div>
+    </div>
+    
+  {% endfor %}
+  </div> 
+</div>
+
+
+
+{% endblock %}

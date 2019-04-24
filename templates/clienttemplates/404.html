@@ -1,0 +1,43 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Notices {% endblock %}
+{% block active1 %} active {% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+<div class="page-title page-title-about bg-pattern" data-bgcolor="4E7B90">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>PAGE NOT FOUND</h1>
+      <p>Our Clinic has grown to provide a world class facility for the treatment of tooth loss, dental cosmetics and advanced restorative dentistry.</p>
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="#"><i class="fa fa-home"></i></a></li>
+        <li class="active">Page not found</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="notfound bg-pattern" data-bgcolor="cccccc">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="notfound-image"> </div>
+        <div class="notfound-title-1"> 404 </div>
+        <div class="notfound-title-2"> OOPS! Page not found </div>
+        <div class="notfound-text"> The page you are looking for doesn`t exist or an other error occurred<br>
+          head over to <a href="{% url 'clinic1app:clienthome' %}">Clinic1</a> to choose a new direction </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

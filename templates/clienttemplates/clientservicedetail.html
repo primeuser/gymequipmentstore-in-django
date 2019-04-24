@@ -1,0 +1,120 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Details {% endblock %}
+{% block active4 %} active {% endblock %}
+
+{% block css %}
+<style type="text/css">
+  img:hover
+  {
+    transform:scale(1.1);
+  }
+</style>
+
+
+{% endblock %}
+
+{% block body %}
+<div class="page-title page-title-blog bg-pattern" data-bgcolor="199FBE">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>Services Details</h1>
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="{% url 'gymapp:clienthome' %}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{% url 'gymapp:clientservicelist' %}">Services </a></li>
+        <li class="active">{{clientservicedetail.title|title}}</li>
+      </ol>
+   
+  </div>
+</div>
+</div>
+<div class="container" >
+  <div class="row">
+  <div class="col-md-4">
+    <div class="doctor-info">
+          <br><div class="doctor-info-image"> <img src="{{clientservicedetail.image.url}}" alt="" /> </div>
+          <div class="doctor-info-name">{{clientservicedetail.title|title}}</div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <br>
+     <br>
+      <br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="doctors-text-text" style="color: #000; text-align: justify;">
+          {{ clientservicedetail.detail|striptags|safe}}
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</div>
+</div>
+
+          
+	  <!-- <div class="row">
+	  	<div class="col-md-3"> 
+          
+      	</div>	
+        <div class="col-md-6"> 
+          <img src="{{ clientservicedetail.image.url }}" alt="" />
+          <br>
+       	  <h3>{{ clientservicedetail.title }}</h3>
+          <br>
+       	  <li>{{ clientservicedetail.detail}}</li>
+      	</div>
+      	<div class="col-md-3"> 
+          
+      	</div>		
+      </div>
+<br>
+<br> -->
+</div>
+
+<div class="doctors doctors-2">
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">
+        <span class="bold700">
+          OUR SERVICES
+        </span>
+      </h2>
+      <div class="doctors-container">
+        {% for s in clientservicelist %}
+        
+        {% if s != clientservicedetail %}
+        <div class="doctors-item col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <div class="doctors-item-container">
+            <div class="doctors-item-image"> <img src="{{s.image.url}}" alt="" /> </div>
+            <div class="doctors-item-name"><a href="{% url 'gymapp:clientservicedetail' s.slug %}">{{s.title|title}}</a></div>
+           
+          </div>
+          <div class="doctors-item-social"> <a href="https://www.facebook.com" target="_blank"><i class="fa fa-facebook"></i></a> <a href="https://www.twitter.com" target="_blank"><i class="fa fa-twitter"></i></a> <a href="https://www.skype.com" target="_blank"><i class="fa fa-skype"></i></a> </div>
+          <!-- <div class="doctors-item-button"> <a href="#bookform2" class="fancybox-1 btn btn-default">
+              <span class="plus">
+                +
+              </span>
+              BOOK APPOINTMENT</a> </div> -->
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+     
+      
+

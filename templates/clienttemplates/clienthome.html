@@ -1,0 +1,575 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+
+{% block title %} Home {% endblock %}
+{% block active1 %}active{% endblock %}
+{% block css %}
+<style type="text/css">
+/*@media only screen and (max-width: 600px) {
+  #popup{
+    min-width:10%;
+  }*/
+
+  .popp {
+   
+   
+    background-color: rgba(22,22,22,0.5); /* complimenting your modal colors */
+  }
+/*#popupModal:target {
+    visibility: visible;
+    display: block;
+  }*/
+/*.modal {
+    
+  width: 100px;
+  height: 50px;
+  position:fixed; 
+  top: calc(50% - 25px); // half of width
+  left: calc(50% - 50px); // half of height
+}*/
+</style>
+
+
+{% endblock %}
+{% block body %}
+
+{% if messages %}
+{% else %}
+{% if clientpopup.show %}
+<div class="popp">
+  <div class="modal fade bd-example-modal-lg" id="popupModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" style="text-align: center;">{{clientpopup.title|title}}
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;
+             
+            </button>
+          </h3>
+        </div>
+        <div class="modal-body">
+          <img src="{{clientpopup.image.url}}"  style="width: 100%; height: auto;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+{% endif %}
+<div id="slider" class="slider">
+  <div class="sp-slides"> 
+    
+
+
+
+    <!-- HEADER SLIDER ITEM -->
+    {% for slider in clientsliderlist %}
+
+    <div class="sp-slide"> <img class="sp-image" src="css/images/blank.gif" style=" object-fit: contain; " alt="" data-src="{{ slider.image.url }}" />
+      
+      <div class="container">
+        <div class="container1" >
+        <h1 class="sp-layer slider-title"  style="color: white;" 
+        data-position="leftCenter" data-horizontal="15" data-vertical="-230" 
+        data-show-transition="left" data-hide-transition="left"
+        data-show-delay="200" data-hide-delay="200"> {{slider.title}} </h1>
+        <br>
+        <p class="sp-layer slider-text" style="width: 30px; margin-right: 30px; color: white;" 
+        data-position="leftCenter" data-horizontal="15" data-vertical="-110" 
+        data-show-transition="left" data-hide-transition="left"
+        data-show-delay="600" data-hide-delay="600" > <br>{{slider.about|wordwrap:70|linebreaksbr}}<br>
+      </p>
+       <!--  <p class="sp-layer slider-button" 
+                        data-position="leftCenter" data-horizontal="15" data-vertical="300" 
+                        data-show-transition="left" data-hide-transition="left"
+                        data-show-delay="800" data-hide-delay="800"> <a href="#" class="btn btn-primary">READ MORE</a> </p> -->
+                      </div>
+                    </div>       
+                  </div>
+                  {% endfor %}
+                  
+                  
+                </div>
+              </div>
+<!-- =========================
+     END HEADER SLIDER
+     ============================== --> 
+
+<!-- =========================
+     SERVICES
+     ============================== -->
+     <div class="services" id="services"> 
+
+      <!-- SERVICES ITEM -->
+      {% for service in clientservicelist %}
+
+      
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 {% if forloop.counter == 1 %}service bg-primary-2{% elif forloop.counter == 2%}service bg-child-2 {% elif forloop.counter == 3 %}service bg-child-3  {% elif forloop.counter == 4 %}service bg-child-4{% endif %} ">
+        
+        
+
+        <div class="service-icon"> <i class="fas fa-dumbbell"></i></div>
+        <div class="service-title" >
+          
+          <h3>{{service.title| title}}</h3>
+        </div>
+        
+        <div class="service-text" style="  height: 52px;
+        overflow: hidden;" > {{service.detail|safe}} </div>
+      </div>
+
+
+      {% endfor %}
+      
+    </div>
+<!-- =========================
+     END SERVICES
+     ============================== --> 
+
+<!-- =========================
+     ABOUT
+     ============================== -->
+     <div class="about">
+      <div class="container">
+        <div class="row"> 
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 about-text" style="margin:0px !important;">
+            <h2 class="section-title" style="margin-left: 20px;">
+              <span class="bold700">
+                ABOUT
+              </span>
+              GYM MARKET</h2>
+              {{organization.about|safe}} 
+              <br>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " style="visibility: visible;"><img src="{% static 'clientstatic/images/muscle.jpg' %}" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+      
+
+<!-- =========================
+     END ABOUT
+     ============================== --> 
+
+<!-- =========================
+     CERTIFICATES
+     ============================== -->
+
+<!-- =========================
+     END CERTIFICATES
+     ============================== --> 
+
+<!-- =========================
+     DOCTORS
+     ============================== -->
+     <div class="doctors">
+      <div class="container">
+        <div class="row">
+          <h2 class="section-title">MEET
+            <span class="bold700">
+              OUR TRAINERS
+            </span>
+          </h2>
+          <p class="section-subtitle">All staff members of GYM Market are licensed professionals. Our staff consists of licensed general trainer, dietician, gym assis-<br>
+            tants, celebrity trainers and advanced gym equipments.</p>
+            <div class="doctors-container">
+              <div class="owl-doctors" id="owl-doctors"> 
+                
+                <!-- DOCTORS ITEM -->
+                {% for doctors in clientdoctorlist %}
+                <div class="doctors-item">
+                  <div class="doctors-item-container">
+                    <div class="doctors-item-image"> <a href="{% url 'gymapp:clientdoctordetail' doctors.slug %}"><img src="{{doctors.image.url}}" alt="" style="height:250px; width:200px;" /></a> </div>
+                    <div class="doctors-item-name"><a href="{% url 'gymapp:clientdoctordetail' doctors.slug %}">{{doctors.name}}</a></div>
+                    <div class="doctors-item-position">{{doctors.speciality}}</div>
+                  </div>
+                  <div class="doctors-item-social"> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-skype"></i></a> </div>
+            <!-- <div class="doctors-item-button"> <a href="#bookform2" class="fancybox-1 btn btn-default">
+                <span class="plus">
+                  +
+                </span>
+                BOOK APPOINTMENT</a> </div> -->
+              </div>
+              {% endfor %}
+              
+            </div>
+            <!-- DOCTORS BUTTONS -->
+            <div class="carousel-btn carousel-next" id="next-doctors"><i class="fa fa-angle-right"></i></div>
+            <div class="carousel-btn carousel-prev" id="prev-doctors"><i class="fa fa-angle-left"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- =========================
+     END DOCTORS
+     ============================== --> 
+
+<!-- =========================
+     BOOKING FORM
+     ============================== -->
+<!-- <div class="booking">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form" id="bookform1"> -->
+        
+ <!--        <form>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item name">
+              <input type="text" name="name" id="name" data-validation="required" placeholder="Your name" />
+              <div class="help help-sm help-red">!</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item phone">
+              <input type="text" name="phone" id="phone" data-validation="required" placeholder="Phone" />
+              <div class="help help-sm help-red">!</div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item email">
+              <input type="text" name="email" id="email" placeholder="E-mail" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item date">
+              <input type="text" class="datepicker-f" id="datepicker" name="date" data-validation="required" placeholder="Date" />
+              <div class="help help-sm help-red">!</div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item time-f">
+              <input type="text" class="timepicker-f" id="timepicker" name="time" data-validation="required" placeholder="Time" />
+              <div class="help help-sm help-red">!</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item">
+              <textarea name="message" id="message" placeholder="Your message.."></textarea>
+            </div>
+          </div>
+          <div class="row latest-row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 booking-form-item">
+              <button class="btn btn-primary">
+                SUBMIT
+              </button>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 booking-form-item">
+              <div class="help t-tooltip t-left"> ?
+                <div class="tt-row-item-active-hover"></div>
+                <div class="t-tooltip-text">
+                  <div class="t-tooltip-text-body"> Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+                    <a href="#" class="btn btn-primary-1 btn-sm">READ MORE</a> </div>
+                  <div class="t-tooltip-text-hover"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form> -->
+ <!--  <div class="bookform-left">
+    <h2 class="section-title">
+      <span class="bold700">
+        BOOK APPOINTMENT
+      </span>
+    </h2>
+   
+<! =========================
+    REVIEW
+    ============================== -->
+    <div class="review">
+      <div class="container">
+        <div class="row">
+          <h2 class="section-title">
+            <span class="bold700">
+              TESTIMONIALS
+            </span>
+          </h2>
+          <p class="section-subtitle">Many of our patients are our friends now, and they recommend our Dental clinic to their friends and come with their children and<br>
+            senior parents to us. We are very proud that you entrust the health of your relatives to us! </p>
+            <div class="review-container">
+              <div class="owl-review" id="owl-review"> 
+                
+                {% for testimonial in clienttestimoniallist %}
+                <!-- REVIEW ITEM -->
+                <div class="review-item" style="height: 225px;">
+                 
+                  
+                  <div class="review-item-image"> <img src="{{testimonial.image.url}}" style="width:90px; height:90px; " /> </div>
+                  <div class="review-item-text">{{ testimonial.written_by }} </div>
+                  <div class="review-item-name">{{ testimonial.relation }}</div>
+                  <div class="review-item-position">{{ testimonial.testimonial|safe }}</div>
+                  
+                  
+                </div>
+                {% endfor %}
+                
+                
+              </div>
+              <!-- REVIEW BUTTONS -->
+              <div class="carousel-btn carousel-next" id="next-review"><i class="fa fa-angle-right"></i></div>
+              <div class="carousel-btn carousel-prev" id="prev-review"><i class="fa fa-angle-left"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- =========================
+    END REVIEW
+    ============================== --> 
+
+<!-- =========================
+    BLOG
+    ============================== -->
+<!-- <div class="blog">
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">LATEST
+        <span class="bold700">
+          NEWS
+        </span>
+      </h2>
+      <p class="section-subtitle">We will always keep you informed about fresh news of our Dental clinic. Moreover, you will find useful articles about dental care,<br>
+        the newest technologies in the treatment, oral hygiene, and interesting events related to dentistry and medicine in general. </p>
+      <div class="blog-container">
+        <div class="owl-blog" id="owl-blog"> 
+          BLOG ITEM -->
+          <!-- {% for blog in clientbloglist %}
+          <div class="blog-item">
+            <div class="blog-item-image"> <img src="{{blog.image.url}}" alt="" />
+            </div>
+            <div class="blog-item-title">
+              <h3><a href="#">{{blog.title}}</a></h3>
+            </div>
+            <div class="blog-item-text">{{blog.content}}</div>
+            <div class="blog-item-button"><a href="#" class="btn btn-primary-1">READ MORE</a></div>
+          </div>
+          {% endfor %}
+        </div>
+        BLOG BUTTONS -->
+        <!-- <div class="carousel-btn carousel-next" id="next-blog"><i class="fa fa-angle-right"></i></div>
+        <div class="carousel-btn carousel-prev" id="prev-blog"><i class="fa fa-angle-left"></i></div>
+      </div>
+    </div>
+  </div>
+</div> - -->
+<!-- =========================
+    END BLOG
+    ============================== --> 
+
+<!-- =========================
+    TIPS AND FAQ
+    ============================== -->
+<!-- <div class="tipsfaq">
+  <div class="container">
+    <div class="row"> 
+      
+     TIPS -->
+   <!--    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 tips">
+        <h2 class="section-title">
+          <span class="bold700">
+            TOP TIPS
+          </span>
+          FROM DOCTORS</h2>
+          TIPS NAVS -->
+       <!--  <div class="tips-tabs">
+          <ul class="nav nav-tabs tabs-carousel">
+            <li class="active"><a href="#tips1" data-toggle="tab">Teeth whitening</a></li>
+            <li><a href="#tips2" data-toggle="tab">Oral exams</a></li>
+            <li><a href="#tips3" data-toggle="tab">Fillings and bridges</a></li>
+            <li><a href="#tips4" data-toggle="tab">Root canals</a></li>
+            <li><a href="#tips5" data-toggle="tab">Oral exams</a></li>
+            <li><a href="#tips6" data-toggle="tab">Root canals</a></li>
+          </ul>
+          <div class="tips-btn tips-next" id="next-tips"><i class="fa fa-angle-right"></i></div>
+          <div class="tips-btn tips-prev" id="prev-tips"><i class="fa fa-angle-left"></i></div>
+        </div> -->
+        <!-- TIPS ITEMS -->
+        <!-- <div class="tips-content">
+        <div class="tab-content" -->
+          
+          <!-- TIPS ITEM -->
+          <!--   <div class="tab-pane fade active in tips-content-item" id="tips1">
+              <div class="tips-content-item-text">
+                <p>Tooth whitening (termed tooth bleaching when utilizing bleach), is either restoration of natural tooth shade or whitening beyond natural tooth shade, depending on the definition used.</p>
+                <p>Restoration of the underlying, natural tooth shade is possible by simply removing surface (extrinsic) stains (e.g. from tea, coffee, red wine and tobacco) and calculus (tartar). This is achieved by having the teeth cleaned by a dental professional (commonly termed "scale and polish".</p>
+                <div class="tips-content-item-btn"> <a href="#" class="btn btn-primary-1">READ MORE</a> </div>
+              </div>
+              <div class="tips-content-item-image"> <img src="{% static 'clientstatic/images/blog_author1.jpg' %}" alt="" />
+                <div class="tips-content-item-name"> <a href="#">Wyatt Esmond</a> </div>
+                <div class="tips-content-item-position"> General Dentist </div>
+              </div>
+            </div> -->
+            
+            <!-- TIPS ITEM -->
+          <!--   <div class="tab-pane fade tips-content-item" id="tips2">
+              <div class="tips-content-item-text">
+                <p>Tooth whitening (termed tooth bleaching when utilizing bleach), is either restoration of natural tooth shade or whitening beyond natural tooth shade, depending on the definition used.</p>
+                <p>Restoration of the underlying, natural tooth shade is possible by simply removing surface (extrinsic) stains (e.g. from tea, coffee, red wine and tobacco) and calculus (tartar). This is achieved by having the teeth cleaned by a dental professional (commonly termed "scale and polish".</p>
+                <div class="tips-content-item-btn"> <a href="#" class="btn btn-primary-1">READ MORE</a> </div>
+              </div>
+              <div class="tips-content-item-image"> <img src="{% static 'clientstatic/images/blog_author2.jpg' %}" alt="" />
+                <div class="tips-content-item-name"> <a href="#">Arnie Alban</a> </div>
+                <div class="tips-content-item-position"> Pedodontics </div>
+              </div>
+            </div> -->
+            
+            <!-- TIPS ITEM -->
+<!--             <div class="tab-pane fade tips-content-item" id="tips3">
+              <div class="tips-content-item-text">
+                <p>Tooth whitening (termed tooth bleaching when utilizing bleach), is either restoration of natural tooth shade or whitening beyond natural tooth shade, depending on the definition used.</p>
+                <p>Restoration of the underlying, natural tooth shade is possible by simply removing surface (extrinsic) stains (e.g. from tea, coffee, red wine and tobacco) and calculus (tartar). This is achieved by having the teeth cleaned by a dental professional (commonly termed "scale and polish".</p>
+                <div class="tips-content-item-btn"> <a href="#" class="btn btn-primary-1">READ MORE</a> </div>
+              </div>
+              <div class="tips-content-item-image"> <img src="{% static 'clientstatic/images/blog_author3.jpg' %}" alt="" />
+                <div class="tips-content-item-name"> <a href="#">Dustin Callahan</a> </div>
+                <div class="tips-content-item-position"> Orthodontist </div>
+              </div>
+            </div> -->
+            
+            <!-- TIPS ITEM -->
+            
+            
+            <!-- TIPS ITEM -->
+          <!--   <div class="tab-pane fade tips-content-item" id="tips5">
+              <div class="tips-content-item-text">
+                <p>Tooth whitening (termed tooth bleaching when utilizing bleach), is either restoration of natural tooth shade or whitening beyond natural tooth shade, depending on the definition used.</p>
+                <p>Restoration of the underlying, natural tooth shade is possible by simply removing surface (extrinsic) stains (e.g. from tea, coffee, red wine and tobacco) and calculus (tartar). This is achieved by having the teeth cleaned by a dental professional (commonly termed "scale and polish".</p>
+                <div class="tips-content-item-btn"> <a href="#" class="btn btn-primary-1">READ MORE</a> </div>
+              </div>
+              <div class="tips-content-item-image"> <img src="{% static 'clientstatic/images/blog_author5.jpg' %}" alt="" />
+                <div class="tips-content-item-name"> <a href="#">Leslie Adams</a> </div>
+                <div class="tips-content-item-position"> Prosthodontics </div>
+              </div>
+            </div> -->
+            
+            <!-- TIPS ITEM -->
+         <!--    <div class="tab-pane fade tips-content-item" id="tips6">
+              <div class="tips-content-item-text">
+                <p>Tooth whitening (termed tooth bleaching when utilizing bleach), is either restoration of natural tooth shade or whitening beyond natural tooth shade, depending on the definition used.</p>
+                <p>Restoration of the underlying, natural tooth shade is possible by simply removing surface (extrinsic) stains (e.g. from tea, coffee, red wine and tobacco) and calculus (tartar). This is achieved by having the teeth cleaned by a dental professional (commonly termed "scale and polish".</p>
+                <div class="tips-content-item-btn"> <a href="#" class="btn btn-primary-1">READ MORE</a> </div>
+              </div>
+              <div class="tips-content-item-image"> <img src="{% static 'clientstatic/images/blog_author6.jpg' %}" alt="" />
+                <div class="tips-content-item-name"> <a href="#">Helen Edwards</a> </div>
+                <div class="tips-content-item-position"> Pediatric Dentistry </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> --> 
+      
+      <!-- FAQ -->
+      <!-- <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 faq">
+        <h2 class="section-title">
+          <span class="bold700">
+            FAQ
+          </span>
+        </h2> -->
+       <!--  <div class="panel-group" id="accordion"> 
+       FAQ ITEM -->
+         <!--  <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> <i class="fa fa-heartbeat"></i> Surgical implant placements </a> </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+              <div class="panel-body"> Dental implant placement is no longer performed only by oral surgeons and periodontists; general dentists are also increasingly providing difficult surgical implant services. Dental implants may be used to replace single teeth, replace multiple teeth, or provide abutments for complete dentures or partials. This topic focuses on the placement of single-tooth dental implants. </div>
+            </div>
+          </div> --> 
+          
+          <!-- FAQ ITEM -->
+          <!-- <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed"> <i class="fa fa-medkit"></i> Teeth whitening </a> </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+              <div class="panel-body"> Dental implant placement is no longer performed only by oral surgeons and periodontists; general dentists are also increasingly providing difficult surgical implant services. Dental implants may be used to replace single teeth, replace multiple teeth, or provide abutments for complete dentures or partials. This topic focuses on the placement of single-tooth dental implants. </div>
+            </div>
+          </div> -->
+          
+          <!-- FAQ ITEM -->
+          <!-- <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed"> <i class="fa fa-life-bouy"></i> Teeth cleaning </a> </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+              <div class="panel-body"> Dental implant placement is no longer performed only by oral surgeons and periodontists; general dentists are also increasingly providing difficult surgical implant services. Dental implants may be used to replace single teeth, replace multiple teeth, or provide abutments for complete dentures or partials. This topic focuses on the placement of single-tooth dental implants. </div>
+            </div>
+          </div> -->
+          
+          <!-- FAQ ITEM -->
+         <!--  <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed"> <i class="fa fa-flask"></i> X-rays </a> </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+              <div class="panel-body"> Dental implant placement is no longer performed only by oral surgeons and periodontists; general dentists are also increasingly providing difficult surgical implant services. Dental implants may be used to replace single teeth, replace multiple teeth, or provide abutments for complete dentures or partials. This topic focuses on the placement of single-tooth dental implants. </div>
+            </div>
+          </div> -->
+          
+          <!-- FAQ ITEM -->
+          <!-- <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive" class="collapsed"> <i class="fa fa-ambulance"></i> Crowns </a> </h4>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse">
+              <div class="panel-body"> Dental implant placement is no longer performed only by oral surgeons and periodontists; general dentists are also increasingly providing difficult surgical implant services. Dental implants may be used to replace single teeth, replace multiple teeth, or provide abutments for complete dentures or partials. This topic focuses on the placement of single-tooth dental implants. </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- =========================
+    END TIPS AND FAQ
+    ============================== --> 
+
+<!-- =========================
+    CLIENTS
+    ============================== -->
+<!-- <div class="clients">
+  <div class="container">
+    <div class="row">
+      <p class="section-subtitle">PARTNER COMPANIES</p>
+      <div class="clients-container">
+        <div class="owl-clients" id="owl-clients"> 
+          
+         CLIENTS ITEM -->
+         <!-- <div class="clients-item"> <img src="{% static 'clientstatic/images/clients1.jpg' %}" alt="" /> </div> -->
+         
+         <!-- CLIENTS ITEM -->
+         <!-- <div class="clients-item"> <img src="{% static 'clientstatic/images/clients2.jpg' %}" alt="" /> </div> -->
+         
+         <!-- CLIENTS ITEM -->
+         <!-- <div class="clients-item"> <img src="{% static 'clientstatic/images/clients3.jpg' %}" alt="" /> </div> -->
+         
+         <!-- CLIENTS ITEM -->
+         <!-- <div class="clients-item"> <img src="{% static 'clientstatic/images/clients4.jpg' %}" alt="" /> </div> -->
+         
+         <!-- CLIENTS ITEM -->
+         <!-- <div class="clients-item"> <img src="{% static 'clientstatic/images/clients5.jpg' %}" alt="" /> </div> -->
+         
+         <!-- CLIENTS ITEM -->
+         <!-- <div class="clients-item"> <img src="{% static 'clientstatic/images/clients2.jpg' %}" alt="" /> </div> -->
+         
+         <!-- CLIENTS ITEM -->
+          <!-- <div class="clients-item"> <img src="{% static 'clientstatic/images/clients3.jpg' %}" alt="" /> </div>
+        </div> -->
+        
+        <!-- CLIENTS BUTTONS -->
+    <!--     <div class="carousel-btn carousel-next" id="next-clients"><i class="fa fa-angle-right"></i></div>
+        <div class="carousel-btn carousel-prev" id="prev-clients"><i class="fa fa-angle-left"></i></div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- =========================
+    END CLIENTS
+    ============================== --> 
+    {% block js %}
+    <script type="text/javascript">
+     $(window).on('load',function(){
+      $('#popupModal').modal('show');
+    });
+  </script> 
+  {% endblock %}
+
+  {% endblock %}

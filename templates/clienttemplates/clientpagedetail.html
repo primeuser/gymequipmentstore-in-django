@@ -1,0 +1,54 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} {{clientpagedetail.title}} {% endblock %}
+{% block active4 %} active {% endblock %}
+
+{% block css %}
+<style type="text/css">
+  img:hover
+  {
+    transform:scale(1.1);
+  }
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+
+<div class="container" >
+  <br>
+  <br>
+  <div class="row">
+  <div class="col-md-4">
+    <div class="doctor-info">
+          <br><div class="doctor-info-image"> <img src="{{clientpagedetail.image.url}}" alt="" /> </div>
+          <div class="doctor-info-name">{{clientpagedetail.title}}</div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <br>
+     <br>
+      <br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="doctors-text-text" style="color: #000; text-align: justify;">
+          {{clientpagedetail.content|safe}}
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</div>
+  <br>
+          <br>
+</div>
+
+
+{% endblock %}

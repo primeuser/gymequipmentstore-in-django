@@ -1,0 +1,76 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Details {% endblock %}
+{% block active4 %} active {% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="{% url 'gymapp:clienthome' %}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{% url 'gymapp:clientnoticelist' %}">Notices </a></li>
+        <li class="active">Notices</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="container">
+	  <div class="row">
+	  	<div class="col-md-3"> 
+          
+      	</div>	
+        <div class="col-md-6"> 
+          <img src="{{ clientnoticedetail.image.url }}" alt="" />
+          <br>
+       	  <h3>{{ clientnoticedetail.title|title }}</h3>
+          <br>
+       	  <li>{{ clientnoticedetail.detail|safe}}</li>
+      	</div>
+      	<div class="col-md-3"> 
+          
+      	</div>		
+      </div>
+<br>
+<br>
+</div>
+
+<!-- div class="doctors doctors-2">
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">
+        <span class="bold700">
+          OUR NOTICES
+        </span>
+      </h2>
+      <div class="doctors-container">
+        {% for s in clientnoticelist %}
+        
+        {% if s != clientnoticedetail %}
+        <div class="doctors-item col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="doctors-item-container"> -->
+            <!-- <div class="doctors-item-image"> <img src="{{s.image.url}}" alt="" /> </div> -->
+            <!-- <div class="doctors-item-name">{{s.title|title}}</div> -->
+           
+         <!--  </div> -->
+          <!-- <div class="doctors-item-social"> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-skype"></i></a> </div> -->
+          <!-- <div class="doctors-item-button"> <a href="#bookform2" class="fancybox-1 btn btn-default">
+              <span class="plus">
+                +
+              </span>
+              BOOK APPOINTMENT</a> </div> -->
+       <!--  </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div> --> 
+{% endblock %}
+     
+      
+

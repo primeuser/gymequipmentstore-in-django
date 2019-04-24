@@ -1,0 +1,201 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Details {% endblock %}
+{% block active7 %} active {% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+<div class="page-title page-title-doctor bg-pattern" data-bgcolor="199FBE">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>MEET OUR DOCTORS</h1>
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="#"><i class="fa fa-home"></i></a></li>
+        <li><a href="{% url 'gymapp:clientdoctorlist' %}">Our Doctors </a></li>
+        <li class="active">{{clientdoctordetail.name}}</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="container">
+<div class="row">
+	<div class="col-md-4">
+		<div class="doctor-info">
+		      <div class="doctor-info-image"><img src="{{clientdoctordetail.image.url}}" alt="" style="object-fit: cover; height:426px; width: 400px;" /> </div>
+		      <div class="doctor-info-name">{{clientdoctordetail.name}}</div>
+		      <div class="doctor-info-position"> {{clientdoctordetail.speciality}} </div>
+		      <div class="doctor-info-hours-title"> Time Schedules </div>
+		      <div class="doctor-info-hours">
+            <h4 class="doctor-info-hours-left">Days</h4>
+		        <div class="doctor-info-hours-clock"> <img src="{% static 'clientstatic/images/clock.png' %}" alt="" /> </div>
+            <h4 class="doctor-info-hours-right">Time</h4>
+            {% for schedule in sundayschedules %}
+            <div class="doctor-info-hours-left">
+              {{schedule.day}}
+            </div>
+            <div class="doctor-info-hours-right">
+              {{schedule.arrival}}--{{schedule.departure}}
+            </div>
+            {% endfor %}
+            {% for schedule in mondayschedules %}
+            <div class="doctor-info-hours-left"> 
+              {{schedule.day}}
+            </div>
+            <div class="doctor-info-hours-right">
+              {{schedule.arrival}}--{{schedule.departure}}
+            </div>
+            {% endfor %}
+            {% for schedule in tuesdayschedules %}
+            <div class="doctor-info-hours-left"> 
+              {{schedule.day}}
+            </div>
+            <div class="doctor-info-hours-right">
+              {{schedule.arrival}}--{{schedule.departure}}
+            </div>
+            {% endfor %}
+            {% for schedule in wednesdayschedules %}
+            <div class="doctor-info-hours-left"> 
+              {{schedule.day}}
+            </div>
+            <div class="doctor-info-hours-right">
+              {{schedule.arrival}}--{{schedule.departure}}
+            </div>
+            {% endfor %}
+             {% for schedule in thursdayschedules %}
+            <div class="doctor-info-hours-left"> 
+              {{schedule.day}}
+            </div>
+            <div class="doctor-info-hours-right">
+              {{schedule.arrival}}--{{schedule.departure}}
+            </div>
+            {% endfor %}
+            {% for schedule in fridayschedules %}
+            <div class="doctor-info-hours-left"> 
+              {{schedule.day}}
+            </div>
+            <div class="doctor-info-hours-right">
+              {{schedule.arrival}}--{{schedule.departure}}
+            </div>
+            {% endfor %}
+            {% for schedule in saturdayschedules %}
+            <div class="doctor-info-hours-left"> 
+              {{schedule.day}}
+            </div>
+            <div class="doctor-info-hours-right">
+              {{schedule.arrival}}--{{schedule.departure}}
+            </div>
+            {% endfor %}
+		      </div>
+    	</div>
+
+	</div>
+<div class="col-md-8">
+<div class="doctors-text">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+          <p style="text-align: justify;">{{clientdoctordetail.details|safe}}</p>
+
+      </div>
+    </div>
+    </div>
+  </div>
+  <br>
+  <br>
+   <div class="container-fluid">
+    <h1>Make an appointment with {{clientdoctordetail.name}}</h1>
+      <form method="POST" action="{% url 'gymapp:clientappointmentcreate' %}">
+      {% csrf_token %}
+      <input type="hidden" name="selects" value="{{clientdoctordetail.slug}}">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item name">
+          {{clientappointmentform.patient_name}}
+          <div class="help help-sm help-red">!</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item phone">
+          {{clientappointmentform.mobile}}
+          <div class="help help-sm help-red">!</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item email">
+          {{clientappointmentform.email}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item date">
+          {{clientappointmentform.date}}
+          <div class="help help-sm help-red">!</div>
+        </div>
+        
+      </div>
+         
+      <div class="row">
+        
+       
+      </div>
+   
+     <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item">
+          {{clientappointmentform.details}}
+        </div>
+      </div>
+
+      <div class="row latest-row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item">
+          <button class="btn btn-primary">
+            SUBMIT
+          </button>
+          <a class="fb-close" id="fb-close1" href="javascript:jQuery.fancybox.close();">Cancel</a> </div>
+      </div>
+    </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class="doctors doctors-2">
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">MEET
+        <span class="bold700">
+          OUR DOCTORS
+        </span>
+      </h2>
+      <div class="doctors-container">
+        {% for doctor in clientdoctorlist %}
+        {% if doctor != clientdoctordetail %}
+        <div class="doctors-item col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <div class="doctors-item-container">
+            <div class="doctors-item-image"> <a href="{% url 'gymapp:clientdoctordetail' doctor.slug %}"><img src="{{doctor.image.url}}" alt=""  style="width:400px; height: 426px; object-fit: contain;" /></a></div>
+            <div class="doctors-item-name"><a href="{% url 'gymapp:clientdoctordetail' doctor.slug %}">Dr. {{doctor.name|title}}</a></div>
+            <div class="doctors-item-position">{{doctor.speciality|title}}</div>
+          </div>
+          <div class="doctors-item-social"> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-skype"></i></a> </div>
+         <!--  <div class="doctors-item-button"> <a href="#bookform1" class="fancybox-1 btn btn-default">
+              <span class="plus">
+                +
+              </span>
+              BOOK APPOINTMENT</a> </div> -->
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+      		
+{% endblock %}

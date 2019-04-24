@@ -1,0 +1,157 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Product {% endblock %}
+{% block active4 %}active{% endblock %}
+{% block css %}
+<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="% static 'clientstatic/css/bootstrap.min.css' %}" />
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="{% static 'clientstatic/css/slick.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'clientstatic/css/slick-theme.css' %}" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="{% static 'clientstatic/css/nouislider.css' %}" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="% static 'clientstatic/css/font-awesome.min.css' %}">
+
+{% endblock %}
+{% block body %}
+<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!--  Product Details -->
+				<div class="product product-details clearfix">
+					<div class="col-md-6">
+						<div id="product-main-view" style="width: 500px; height: 500px; position: center;" >
+							<div class="product-view">
+								<img src="{{clientproductdetail.image1.url}}"  alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{clientproductdetail.image2.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{clientproductdetail.image3.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{clientproductdetail.image4.url}}" alt="">
+							</div>
+						</div>
+						<div id="product-view" style="margin-top: 0px;">
+							<div class="product-view">
+								<img src="{{clientproductdetail.image1.url}}" style="width:104px; height:104px;" alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{clientproductdetail.image2.url}}" style="width:104px; height:104px;" alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{clientproductdetail.image3.url}}" style="width:104px; height:104px;" alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{clientproductdetail.image4.url}}" style="width:104px; height:104px;" alt="">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="product-body" style="margin-left: 20px;">
+							<h2 class="product-name">{{clientproductdetail.name}}</h2>
+							<h3 class="product-price">Rs.{{clientproductdetail.price}}</h3>
+							<p><strong>Availability:</strong> In Stock</p>
+							<p>{{clientproductdetail.details|safe}}</p>
+							<!-- <div class="product-btns">
+								<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+						</div> -->
+							<form method='post' class="form my-2 my-lg-0 form-product-ajax" action="{% url  'gymapp:cart_update' %}" data-endpoint="{% url 'gymapp:cart_update' %}">
+									{% csrf_token %}
+										<input type="hidden" name='product' value='{{product.id}}'>
+										<span class="submit-span">
+											{% if product in cart.products.all %}
+											In cart <button type="submit" class="btn btn-link">Remove</button>
+											{% else %}
+											<button type="submit" class="btn btn-success">Add to cart </button>
+											{% endif%}
+										</span>
+									</form>
+					</div>
+				</div>
+					<div class="col-md-12">
+						<div class="product-tab">
+							<ul class="tab-nav">
+								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
+								<li><a data-toggle="tab" href="#tab1">Details</a></li>
+								<li><a data-toggle="tab" href="#tab2">Reviews (3)</a></li>
+							</ul>
+							<div class="tab-content">
+								<div id="tab1" class="tab-pane fade in active">
+									<p>{{clientproductdetail.details|safe}}</p>
+								</div>
+		
+							</div>
+						</div>
+					</div>
+				<!-- /Product Details -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+		 <div class="container">
+		    <div class="row">
+		      <h2 class="section-title">
+		        <span class="bold700">
+		          Recommended For You
+		        </span>
+		      </h2>
+		      	<div class="col-md-12">
+		      		<div class="container">
+							{% for product in clientproductlist %}
+
+							{% if product != clientproductdetail %}
+							<div class="doctors-item col-lg-3 col-md-3 col-sm-3 col-xs-12">
+							<div class="doctors-item-container">
+							<div class="doctors-item-image"> <a href="{% url 'gymapp:clientproductdetail' product.id %}"><img src="{{product.image1.url}}" alt="" style="width: 223.3px; height: 223.3px;" /> </a></div>
+							<div class="doctors-item-name" style="margin-left: 10px;"><a href="{% url 'gymapp:clientproductdetail' product.id %}">{{product.name}}</a></div>
+							</div>
+							</div>
+							{% endif %}
+        					{% endfor %}
+					</div>
+
+		      	</div>
+			</div>
+</div>
+</div>
+</div>
+	<!-- /section -->
+
+{% endblock %}
+{% block js %}
+	<script src="{% static 'clientstatic/js/jquery.min.js' %}"></script>
+	<script src="{% static 'clientstatic/js/slick.min.js' %}"></script>
+	<script src="{% static 'clientstatic/js/nouislider.min.js' %}"></script>
+	<script src="{% static 'clientstatic/js/jquery.zoom.min.js' %}"></script>
+	<script src="{% static 'clientstatic/js/main.js' %}"></script>
+
+	<script type="text/javascript">
+		$("#addit").click(function(){
+			var productId = $("#productId").val();
+			var productName = $("#productName").val();
+			var productQuantity = $("#productQuantity").val();
+			var data = {
+			'product_id': productId,
+			'product_name': productName,
+			'quantity': productQuantity
+			};
+
+			$.post("/cart/add", data, showDone);
+			});
+
+			var showDone = function() {
+			/* Make something happen here*/
+			}
+	</script>
+{% endblock %}

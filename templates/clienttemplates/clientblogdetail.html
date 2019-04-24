@@ -1,0 +1,102 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Details {% endblock %}
+{% block active8 %} active {% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="page-title page-title-blog bg-pattern" data-bgcolor="199FBE">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>Blogs</h1>
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="#"><i class="fa fa-home"></i></a></li>
+        <li><a href="{% url 'gymapp:clientbloglist' %}">Blogs</a></li>
+        <li class="active">{{ clientblogdetail.title|title }}</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+  <div class="col-md-4">
+    <div class="doctor-info">
+      <div class="blog-item">
+          <br><div class="blog-item-image"> <img src="{{clientblogdetail.image.url}}" alt="" style="width:384px; height: 267px; object-fit: cover;" />
+              </div>
+
+          <div class="doctor-info-name">{{clientblogdetail.title|title}}</div>
+          </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <br>
+    <br>
+    <br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="doctors-text-text" style="text-align: justify;">
+          {{clientblogdetail.content|safe}}
+        </div>
+        
+      
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="doctors doctors-2">
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">
+        <span class="bold700">
+          OUR BLOGS
+        </span>
+      </h2>
+      <div class="doctors-container">
+        {% for s in clientbloglist %}
+        
+        {% if s != clientblogdetail %}
+        <div class="doctors-item col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <div class="doctors-item-container">
+            <div class="blog-item">
+            <div class="blog-item-image"><a href="{% url 'gymapp:clientblogdetail' s.slug %}"> <img src="{{s.image.url}}" alt="" style="width:384px; height: 267px; object-fit: cover;" /></a>
+              </div>
+            <div class="blog-item-desc">
+                <div class="blog-item-title">
+                <h3><a href="{% url 'gymapp:clientblogdetail' s.slug %}">{{s.title|title}}</a></h3>
+                </div>
+           
+          </div>
+        </div>
+      </div>
+
+          <div class="doctors-item-social"> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-skype"></i></a> </div>
+          <div class="blog-item">
+        </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

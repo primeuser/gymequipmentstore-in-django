@@ -1,0 +1,243 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} Schedule {% endblock %}
+{% block active4 %} active {% endblock %}
+
+{% block css %}
+<style>
+
+@media only screen and (max-width: 600px) {
+  .mbl{
+    overflow: auto;
+    white-space: nowrap;
+
+  }
+#doc-name {
+    color: #55CBF7 !important;
+}
+#doc-name:hover {
+    color: #55CBF7 !important;
+}
+
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="page-title page-title-timetable bg-pattern" data-bgcolor="2791AA">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>SCHEDULES</h1>
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="{% url 'gymapp:clienthome' %}"><i class="fa fa-home"></i></a></li>
+        <li>Info</li>
+        <li class="active">Schedules</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- Start Page Title Section -->
+<div class="mbl">
+    <div class="page-ttl">
+        <div class="layer-stretch">
+            <!-- <div class="page-ttl-container">
+                <h1>Doctor Schedule</h1>
+                <p><a href="{% url 'gymapp:clienthome' %}">Home</a> &#8594; <span>Schedule</span></p>
+            </div> -->
+        </div>
+    </div><!-- End Page Title Section -->
+    <div class="container">
+
+    <div class="theme-material-card">
+        <!-- <p class="font-16">Doctor Schedule</p> -->
+        <table class="table table-bordered" id="mytable">
+
+            <thead>
+                <style type="text/css">
+                   @media only screen and (max-width: 600px)  {
+                    .th-sch{
+                        min-width: 150px;
+                    }
+                 }
+
+                </style>
+                <tr style="text-align: center;">
+                    <th>#</th>
+                    <th class="th-sch">Name</th>
+                    <th class="th-sch">Sunday</th>
+                    <th class="th-sch">Monday</th>
+                    <th class="th-sch">Tuesday</th>
+                    <th class="th-sch">Wednesday</th>
+                    <th class="th-sch">Thursday</th>
+                    <th class="th-sch">Friday</th>
+                    <th class="th-sch">Saturday</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doctor in clientdoctorlist %}
+            <tr style="text-align: center;">
+                <td>{{forloop.counter}}</td>
+                <td><a id="doc-name" href="{% url 'gymapp:clientdoctordetail' doctor.slug %}">{{doctor.name}}<br><pre class="text-muted">{{doctor.speciality}}</pre></a></td>
+                <td class="text-center">
+
+                {% for schedule in doctor.schedules.all %}
+
+                {% if schedule.day == 'sunday' %}
+                {{schedule.arrival}}--{{schedule.departure}}<br>
+                {% endif %}
+                
+                {% endfor %}
+                </td>
+                <td class="text-center">
+                {% for schedule in doctor.schedules.all %}
+                {% if schedule.day == 'monday' %}
+                {{schedule.arrival}}--{{schedule.departure}}<br>
+
+                {% endif %}
+                
+                {% endfor %}
+                </td>
+                 <td class="text-center">
+                {% for schedule in doctor.schedules.all %}
+                {% if schedule.day == 'tuesday' %}
+                {{schedule.arrival}}--{{schedule.departure}}<br>
+                {% endif %}
+                
+                {% endfor %}
+                </td>
+                <td class="text-center">
+                {% for schedule in doctor.schedules.all %}
+                {% if schedule.day == 'wednesday' %}
+                {{schedule.arrival}}--{{schedule.departure}}<br>
+
+                {% endif %}
+                
+                {% endfor %}
+                </td>
+                 <td class="text-center">
+                {% for schedule in doctor.schedules.all %}
+                {% if schedule.day == 'thursday' %}
+                {{schedule.arrival}}--{{schedule.departure}}<br>
+                {% endif %}
+                
+                {% endfor %}
+                </td>
+                <td class="text-center">
+                {% for schedule in doctor.schedules.all %}
+                {% if schedule.day == 'friday' %}
+                {{schedule.arrival}}--{{schedule.departure}}<br>
+
+                {% endif %}
+                
+                {% endfor %}
+                </td>
+                <td class="text-center">
+                {% for schedule in doctor.schedules.all %}
+                {% if schedule.day == 'saturday' %}
+                {{schedule.arrival}}--{{schedule.departure}}<br>
+
+                {% endif %}
+                
+                {% endfor %}
+                </td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+<!-- <div class="timetable">
+  <div class="container">
+    <div class="row">
+      <div class="tt">
+        <div class="tt-header">
+          <div class="tt-search">
+            <input id="tt-search" name="tt-search" type="text" placeholder="Search a doctor..">
+            <button>
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+          <div class="tt-calendar">
+            <div class="tt-calendar-weeks"> <a href="#" class="weeks-btn weeks-prev"><i class="fa fa-angle-left"></i></a> 04 - 11 April, 2016 <a href="#" class="weeks-btn weeks-next"><i class="fa fa-angle-right"></i></a> </div>
+            <div class="tt-calendar-days">
+              <div class="tt-calendar-day">Sunday</div>
+             <div class="tt-calendar-day">Monday</div>
+             <div class="tt-calendar-day">Tuesday</div>
+             <div class="tt-calendar-day">Wednesday</div>
+             <div class="tt-calendar-day">Thursday</div>
+             <div class="tt-calendar-day">Friday</div>
+             <div class="tt-calendar-day">Saturday</div>
+          </div>
+         </div>
+        </div>
+        {% for schedule in clientschedulelist %}
+        <div class="tt-row">
+          <div class="tt-row-left">
+          	<div class="tt-row-name"><a href="#">{{schedule.doctor}}</a></div>
+          </div>
+          <div class="tt-row-right">
+            <div class="tt-row-item tt-row-item-active t-tooltip">
+              <div class="tt-row-item-time"> <i class="fa fa-clock-o"></i>
+                <p> {{schedule.arrival}}<br>
+                  {{schedule.departure}} </p>
+              </div>
+              <div class="tt-row-item-active-hover"></div>
+              <div class="t-tooltip-text">
+                <div class="t-tooltip-text-body"> {{schedule.details}}
+                  </div>
+                <div class="t-tooltip-text-hover"></div>
+              </div>
+            </div>
+            <div class="tt-row-item"> </div>
+            <div class="tt-row-item tt-row-item-active t-tooltip">
+              <div class="tt-row-item-time"> <i class="fa fa-clock-o"></i>
+                <p> 9.00 AM<br>
+                  6.00 PM </p>
+              </div>
+              <div class="tt-row-item-break"> <i class="fa fa-coffee"></i>
+                <p> 1.00 PM<br>
+                  1.40 PM </p>
+              </div>
+              <div class="tt-row-item-active-hover"></div>
+              <div class="t-tooltip-text">
+                <div class="t-tooltip-text-body"> Consectetur adipisicing elit, sed do<br>
+                  eiusmod tempor incididunt ut<br>
+                  labore et dolore magna aliqua.<br>
+                   </div>
+                <div class="t-tooltip-text-hover"></div>
+              </div>
+            </div>
+            <div class="tt-row-item"> </div>
+            <div class="tt-row-item"> </div>
+            <div class="tt-row-item"> </div>
+            <div class="tt-row-item">
+              <div class="tt-row-item-close"> <i class="fa fa-lock"></i> </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div> -->
+{% endblock %}
+{% block js %}
+
+            <script type="text/javascript">
+                if(screen.width <= 600){
+                    var element = document.getElementById("mytable");
+                    element.classList.add("table-responsive");
+                }
+            </script>
+{% endblock %}

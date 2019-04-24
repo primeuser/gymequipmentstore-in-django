@@ -1,0 +1,132 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block title %} About {% endblock %}
+{% block active2 %} active {% endblock %}
+
+{% block css %}
+<style type="text/css">
+  img:hover
+  {
+    transform:scale(1.1);
+  }
+  @media only screen and (max-width: 600px) {
+    iframe {
+      margin-left: 15px;
+      overflow: auto;  
+      width:300px;    
+    }
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+<div class="page-title page-title-about bg-pattern" data-bgcolor="2791AA">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>ABOUT US</h1>
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="{% url 'gymapp:clienthome' %}"><i class="fa fa-home"></i></a></li>
+        <li class="active">About us</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="history">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 history-images">
+        <div class="image-carousel">
+          <div class="owl-image-carousel" id="owl-image-carousel">
+          	{% for d in clientdoctorlist %}
+            <div class="image-carousel-item"> <img src="{{d.image.url}}" alt="" style="width: 400px; height: 426px; " /> </div>
+           {% endfor %}
+          </div>
+          <div class="carousel-btn carousel-next" id="next-image-carousel"><i class="fa fa-angle-right"></i></div>
+          <div class="carousel-btn carousel-prev" id="prev-image-carousel"><i class="fa fa-angle-left"></i></div>
+        </div>
+      </div>
+     
+      <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 history-text">
+         <h3>VISION</h3>
+        <p style="text-align: justify;">{{organization.vision|safe}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mission">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 mission-text">
+        <h3>OUR MISSION</h3>
+        <p style="text-align: justify;">{{organization.mission|safe}}</p>
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 mission-video">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/syeePlMSKPI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="review">
+  <div class="container">
+    <div class="row about">
+
+      <h2 class="section-title">
+        <span class="bold700">
+          TESTIMONIALS
+        </span>
+      </h2>
+      
+      <div class="review-container">
+        <div class="owl-review" id="owl-review"> 
+          
+          {% for testimonial in clienttestimoniallist %}
+          <!-- REVIEW ITEM -->
+          <div class="review-item" style="height: 225px;">
+             
+            
+            <div class="review-item-image"> <img src="{{testimonial.image.url}}" style="width:90px; height:90px; " /> </div>
+            <div class="review-item-text">{{ testimonial.written_by }} </div>
+            <div class="review-item-name">{{ testimonial.relation }}</div>
+            <div class="review-item-position">{{ testimonial.testimonial|safe }}</div>
+    
+            
+          </div>
+          {% endfor %}
+      
+        
+        </div>
+        </div>
+        <!-- REVIEW BUTTONS -->
+        <div class="carousel-btn carousel-next" id="next-review"><i class="fa fa-angle-right"></i></div>
+        <div class="carousel-btn carousel-prev" id="prev-review"><i class="fa fa-angle-left"></i></div>
+      </div>
+    </div>
+  </div>
+
+<!-- <div class="make">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 make-text">
+        <h2>MAKE AN APPOINTMENT</h2>
+        <p>All staff members of Dental Clinic are licensed professionals. Our staff consists of licensed general dentists.</p>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 make-button"> <a href="#bookform1" class="fancybox-2 btn btn-default">
+          <span class="plus">
+            +
+          </span>
+          MAKE AN APPOINTMENT</a> </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+{% endblock %}
